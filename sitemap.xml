@@ -4,7 +4,12 @@
 
     <sitemap>
         <loc>https://www.ezhixuan.xyz/post-sitemap.xml</loc>
-        <lastmod>2023-09-01T16:16:14.000Z</lastmod>
+        <lastmod>2023-09-01T17:06:02.000Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://www.ezhixuan.xyz/page-sitemap.xml</loc>
+        <lastmod>2023-09-01T17:29:33.000Z</lastmod>
     </sitemap>
 
 </sitemapindex>
