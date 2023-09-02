@@ -10,8 +10,17 @@
     
     
     <url>
-        <loc>https://www.ezhixuan.xyz/wiki/stellar/</loc>
-        <lastmod>2023-09-02T03:05:06.826Z</lastmod>
+        <loc>https://www.ezhixuan.xyz/about/</loc>
+        <lastmod>2023-09-02T17:17:22.021Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/timeline/</loc>
+        <lastmod>2023-09-02T17:08:19.924Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -20,7 +29,7 @@
     
     <url>
         <loc>https://www.ezhixuan.xyz/friends/</loc>
-        <lastmod>2023-09-01T17:27:33.000Z</lastmod>
+        <lastmod>2023-09-02T17:00:02.627Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -28,8 +37,44 @@
     
     
     <url>
-        <loc>https://www.ezhixuan.xyz/about/</loc>
-        <lastmod>2023-09-01T17:27:19.000Z</lastmod>
+        <loc>https://www.ezhixuan.xyz/wiki/stellar/%25E6%2588%2591%25E8%25AF%25B4%25E4%25B8%2580%25E5%258F%25A5%25E8%25AF%259D.html</loc>
+        <lastmod>2023-09-02T16:52:19.029Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/wiki/stellar/%25E6%25B5%258B%25E8%25AF%2595.html</loc>
+        <lastmod>2023-09-02T16:52:11.003Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/wiki/stellar/</loc>
+        <lastmod>2023-09-02T15:42:45.413Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/notes/</loc>
+        <lastmod>2023-09-02T15:20:34.935Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/friends/rss/</loc>
+        <lastmod>2023-09-01T17:27:33.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
