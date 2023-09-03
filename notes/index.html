@@ -91,7 +91,7 @@
 
 
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/586965a7/"><span class="title">Xxl-Job</span></a><a class="item title" href="/post/54193/"><span class="title">“Hexo”</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">Recent Update</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/586965a7/"><span class="title">Xxl-Job</span></a><a class="item title" href="/post/54193/"><span class="title">“Hexo”</span></a></div></widget>
 
 
 <widget class="widget-wrapper timeline"><div class="widget-header cap theme dis-select"><span class="name">最近动态</span></div><div class="widget-body fs14"><div class="tag-plugin timeline stellar-timeline-api" api="https://api.github.com/repos/Ezhixuan/xuanBlog/issues?per_page=5" user="Ezhixuan"></div></div></widget>
@@ -113,6 +113,20 @@
 
 <article class="md-text content page"><p>测试</p>
 <div class="tag-plugin timeline stellar-fcircle-api" api="https://github.com/Ezhixuan/hexo-circle-of-friends/tree/main/data.json"></div></article>
+
+  <div class="related-wrap md-text reveal" id="comments">
+    <section class="header cmt-title cap theme">
+      Join the discussion
+    </section>
+    <section class="body cmt-body giscus">
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"/></svg>
+
+<div id="giscus" data-repo="Ezhixuan/xuanBlog" data-repo-id="R_kgDOKNwUVA" data-category="Announcements" data-category-id="DIC_kwDOKNwUVM4CZDIb" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
 
 
 
@@ -248,11 +262,11 @@
   stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.0';
   stellar.config = {
     date_suffix: {
-      just: '刚刚',
-      min: '分钟前',
-      hour: '小时前',
-      day: '天前',
-      month: '个月前',
+      just: 'Just',
+      min: 'minutes ago',
+      hour: 'hours ago',
+      day: 'days ago',
+      month: 'months ago',
     },
     root : '/',
   };
@@ -307,6 +321,34 @@
 
 
 <!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.log(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
 
 
 
