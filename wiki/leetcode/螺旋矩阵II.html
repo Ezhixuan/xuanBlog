@@ -20,21 +20,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>Leetcode：前言 - Ezhixuan</title>
+  <title>Leetcode：螺旋矩阵II - Ezhixuan</title>
 
   
-    <meta name="description" content="此前已经一刷算法，但是有一段时间没有用了，所以觉得开启二刷，记录一下 2023 年 9 月 3 日数组">
+    <meta name="description" content="螺旋矩阵 59. 螺旋矩阵 II 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。 示例 1： img 输入：n &#x3D; 3输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2： 输入：n &#x3D; 1输出：[[1]] 提示：  1 &lt;&#x3D; n &lt;&#x3D; 20   解题 class Solution &amp;#">
 <meta property="og:type" content="website">
-<meta property="og:title" content="前言">
-<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/leetcode/">
+<meta property="og:title" content="螺旋矩阵II">
+<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/leetcode/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html">
 <meta property="og:site_name" content="Ezhixuan">
-<meta property="og:description" content="此前已经一刷算法，但是有一段时间没有用了，所以觉得开启二刷，记录一下 2023 年 9 月 3 日数组">
+<meta property="og:description" content="螺旋矩阵 59. 螺旋矩阵 II 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。 示例 1： img 输入：n &#x3D; 3输出：[[1,2,3],[8,9,4],[7,6,5]] 示例 2： 输入：n &#x3D; 1输出：[[1]] 提示：  1 &lt;&#x3D; n &lt;&#x3D; 20   解题 class Solution &amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-03T03:46:43.036Z">
-<meta property="article:modified_time" content="2023-09-03T03:46:43.036Z">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
+<meta property="og:image" content="https://www.ezhixuan.xyz/wiki/leetcode/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/image-20230904130209025.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
+<meta property="article:published_time" content="2023-09-04T05:09:11.770Z">
+<meta property="article:modified_time" content="2023-09-04T05:09:11.770Z">
 <meta property="article:author" content="Ezhixuan">
 <meta property="article:tag" content="ezhixuan,博客">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
   
   
   
@@ -70,7 +74,7 @@
 <body>
   
 
-<div class="l_cover wiki"><article class="cover-wrap md-text"><div class="preview"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/img/leetcode.jpg" height="300px"></div><div class="cover-title"><span>Leetcode - 每天提升一点自己</span></div><div class="description">学习数据结构算法，可以大大拓宽我们的思维模式。</div><div class="start-wrap"><a class="button start gradient" href="#start">开始使用</a></div></article></div><hr>
+
 
 
   <div class="l_body" id="start">
@@ -88,7 +92,7 @@
 
 
 
-<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html"><span class="toc-text">关于数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html"><span class="toc-text">二分查找</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html"><span class="toc-text">有序数组的平方</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html"><span class="toc-text">长度最小的子数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html"><span class="toc-text">螺旋矩阵II</span></a></div></div><div class="widget-header cap dis-select"><span class="name">链表</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/N%E7%9A%87%E5%90%8E.html"><span class="toc-text">N皇后</span></a></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html"><span class="toc-text">关于数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html"><span class="toc-text">二分查找</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html"><span class="toc-text">有序数组的平方</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html"><span class="toc-text">长度最小的子数组</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/leetcode/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html"><span class="toc-text">螺旋矩阵II</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5"><span class="toc-text"> 螺旋矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98"><span class="toc-text"> 解题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95"><span class="toc-text"> 个人看法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%B5%B7%E5%A7%8B%E7%82%B9%E4%B8%8E%E7%BB%88%E6%AD%A2%E7%82%B9"><span class="toc-text"> 关于起始点与终止点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%88%E6%95%B0%E5%88%A4%E6%96%AD"><span class="toc-text"> 圈数判断</span></a></li></ol></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">链表</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/N%E7%9A%87%E5%90%8E.html"><span class="toc-text">N皇后</span></a></div></div></widget>
 
 
 
@@ -104,19 +108,221 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/leetcode/">Leetcode</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-03T03:46:43.036Z">2023-09-03</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/leetcode/">Leetcode</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-04T05:09:11.770Z">2023-09-04</time></div></div>
 
   <article class="md-text content wiki">
-  <h1 class="article-title"><span>前言</span></h1>
-  <p>此前已经一刷算法，但是有一段时间没有用了，所以觉得开启二刷，记录一下</p>
-<div class="tag-plugin timeline"><div class="timenode" index="0"><div class="header"><p>2023 年 9 月 3 日</p></div><div class="body fs14"><p>数组</p></div></div></div>
+  <h1 class="article-title"><span>螺旋矩阵II</span></h1>
+  <h2 id="螺旋矩阵"><a class="markdownIt-Anchor" href="#螺旋矩阵"></a> 螺旋矩阵</h2>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://leetcode.cn/problems/spiral-matrix-ii/">59. 螺旋矩阵 II</a></p>
+<p>给你一个正整数 <code>n</code> ，生成一个包含 <code>1</code> 到 <code>n2</code> 所有元素，且元素按顺时针顺序螺旋排列的 <code>n x n</code> 正方形矩阵 <code>matrix</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[[1,2,3],[8,9,4],[7,6,5]]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 20</code></li>
+</ul>
+<h3 id="解题"><a class="markdownIt-Anchor" href="#解题"></a> 解题</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="comment">// 正整数n 生成 1 -&gt; n * n 的元素按顺时针螺旋排序构成 n * n 的正方形矩阵</span></span><br><span class="line">        <span class="comment">// 1. 初始化变量 记录下标位置,起始点 结果数组, 循环圈数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">0</span>, y = <span class="number">0</span>, index = <span class="number">1</span>, startX = <span class="number">0</span>, startY = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> res[][] = <span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">        <span class="type">int</span> <span class="variable">loop</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 2. 确定循环条件</span></span><br><span class="line">        <span class="keyword">while</span> (loop++ &lt; n / <span class="number">2</span> ) &#123;</span><br><span class="line">            <span class="comment">// 3.1 从左 -&gt; 右</span></span><br><span class="line">            <span class="keyword">for</span>(y = startY; y &lt; n - loop; y ++)&#123;</span><br><span class="line">                res[startX][y] = index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 3.2 从上 -&gt; 下</span></span><br><span class="line">            <span class="keyword">for</span>(x = startX; x &lt; n - loop; x ++)&#123;</span><br><span class="line">                res[x][y] = index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 3.3 从右 -&gt; 左</span></span><br><span class="line">            <span class="keyword">for</span>(; y &gt; startY; y --)&#123;</span><br><span class="line">                res[x][y] = index++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 3.4 从下 -&gt; 上</span></span><br><span class="line">            <span class="keyword">for</span>(; x &gt; startX; x--)&#123;</span><br><span class="line">                res[x][y] = index++;</span><br><span class="line">            &#125;</span><br><span class="line">            startX++;</span><br><span class="line">            startY++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 4. 奇数特殊处理中心</span></span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            res[startX][startY] = index;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="螺旋矩阵II/image-20230904130209025.png" alt="image-20230904130209025"></div><div class="image-meta"><span class="image-caption center">image-20230904130209025</span></div></div>
+<h3 id="个人看法"><a class="markdownIt-Anchor" href="#个人看法"></a> 个人看法</h3>
+<p>一道中等难度的题目，对于圈数的认知选择非常关键，是否有将单独点排除出圈单独处理，是在我看来本题的难点。</p>
+<p>正确的圈数认知能够帮助我们确定循环条件以及步数。</p>
+<div class="tag-plugin note"><div class="title">不建议像我一样选择x，y作为坐标变量名</div><div class="body"><p>思维惯性可能会套入坐标系导致做题时误导成横纵坐标</p></div></div>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<h3 id="关于起始点与终止点"><a class="markdownIt-Anchor" href="#关于起始点与终止点"></a> 关于起始点与终止点</h3>
+<p>按顺序依次处理的时候，需要明确上下左右的起始点和终点在哪</p>
+<p>举个例子</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div>
+<p>就该图而言，向左起点如果是1，终点应该是2，而不是3</p>
+<p>否则对于向下来说，起点是4，终点是5，</p>
+<p>对于向右来说，起点是6，终点是7，</p>
+<p>对于向上来说，起点是8，终点也是8。</p>
+<p>这样看来，我们四次的步长向左是3步，向下和向右是2步，向上是1步，这样是不好编写的。</p>
+<p>再看这个有n=4构成的正方形矩阵</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11</td>
+<td>16</td>
+<td>15</td>
+<td>6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>9</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>第一次循环的步数推得为3步。第二次循环的步数推得为1步</p>
+<p>起始步长为n-1步即3步，第二次步长为n-2步即1步</p>
+<p>可以看出 n-1中 1 为第一次循环， n-2 中2为第二次循环</p>
+<p>所以可以推断出对于步数的处理应该是 n - loop</p>
+<h3 id="圈数判断"><a class="markdownIt-Anchor" href="#圈数判断"></a> 圈数判断</h3>
+<p>我们需要大致正确的找到循环圈数的规律。</p>
+<p>n = 1 -&gt;</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+</tr>
+</thead>
+</table>
+<p>圈数为1</p>
+<p>n = 2 -&gt;</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>圈数为1</p>
+<p>n = 3 -&gt;</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>9</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>圈数为2</p>
+<p>n = 4 -&gt;</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11</td>
+<td>16</td>
+<td>15</td>
+<td>6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>9</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>圈数为2</p>
+<p>n = 5 -&gt;</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+<td>6</td>
+</tr>
+<tr>
+<td>15</td>
+<td>24</td>
+<td>25</td>
+<td>20</td>
+<td>7</td>
+</tr>
+<tr>
+<td>14</td>
+<td>23</td>
+<td>22</td>
+<td>21</td>
+<td>8</td>
+</tr>
+<tr>
+<td>13</td>
+<td>12</td>
+<td>11</td>
+<td>10</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>圈数为3</p>
+<p>n = 6 推断 为3</p>
+<p>n = 7 推断 为 4</p>
+<p>n = 8 推断为 4</p>
+<p>可得12-1 34-2 56-3 78-4</p>
+<p>不难推断循环旋转圈数应该是 (n + 1)/2 向下取整</p>
+<p>但是如果选择以该圈数作为循环其实是有问题的，因为我们一次循环会经历上下左右的处理，但是在n为奇数时我们会发现在中间是只有一个小块而不是一圈，如果将此作为一圈得出的结果显然是违背题意的。</p>
+<p>所以我们忽略只有单块的层级可以得出以下结论</p>
+<p>1-0 23-1 45 -2 67-3 89-4</p>
+<p>由此推断出循环的圈数应该是 n/2 向下取整</p>
+<hr>
+<p>综上所述，我们可以知道。</p>
+<p>对于正整数n 生成 1 -&gt; n * n 的元素按顺时针螺旋排序构成 n * n 的正方形矩阵</p>
+<p>需要进行 n / 2 次循环</p>
+<p>每次循环的步数为 n - loop</p>
+
   
   
 
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/leetcode/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html">关于数组</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/leetcode/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html">长度最小的子数组</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/leetcode/N%E7%9A%87%E5%90%8E.html">N皇后</a></div></section></div>
 
   
 

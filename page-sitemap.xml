@@ -10,8 +10,8 @@
     
     
     <url>
-        <loc>https://www.ezhixuan.xyz/about/</loc>
-        <lastmod>2023-09-03T15:00:50.203Z</lastmod>
+        <loc>https://www.ezhixuan.xyz/wiki/leetcode/%25E8%259E%25BA%25E6%2597%258B%25E7%259F%25A9%25E9%2598%25B5II.html</loc>
+        <lastmod>2023-09-04T05:09:11.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -20,7 +20,16 @@
     
     <url>
         <loc>https://www.ezhixuan.xyz/timeline/</loc>
-        <lastmod>2023-09-03T14:29:01.976Z</lastmod>
+        <lastmod>2023-09-04T03:29:55.065Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
+        <loc>https://www.ezhixuan.xyz/about/</loc>
+        <lastmod>2023-09-03T15:00:50.203Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
