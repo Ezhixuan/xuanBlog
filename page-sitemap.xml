@@ -10,8 +10,17 @@
     
     
     <url>
+        <loc>https://www.ezhixuan.xyz/timeline/</loc>
+        <lastmod>2023-09-05T12:42:53.117Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    
+    
+    <url>
         <loc>https://www.ezhixuan.xyz/about/</loc>
-        <lastmod>2023-09-05T12:28:07.732Z</lastmod>
+        <lastmod>2023-09-05T12:40:52.833Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -111,15 +120,6 @@
     <url>
         <loc>https://www.ezhixuan.xyz/wiki/reggie/</loc>
         <lastmod>2023-09-04T11:59:52.447Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    
-    
-    <url>
-        <loc>https://www.ezhixuan.xyz/timeline/</loc>
-        <lastmod>2023-09-04T03:29:55.065Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
