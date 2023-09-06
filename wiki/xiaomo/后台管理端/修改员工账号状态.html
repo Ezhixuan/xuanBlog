@@ -20,18 +20,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>小漠餐馆：前言 - Ezhixuan</title>
+  <title>小漠餐馆：修改员工账号状态 - Ezhixuan</title>
 
   
-    <meta name="description" content="比较早的一个练手项目，最近准备把之前的一些项目依次整理复习一下 因为一些不可抗拒的原因，加上当时的编写方式不够成熟，所以这里只挑选一些相对有用的功能记录或重写  但是回顾之后，目前看来感觉都是比较简单正常的业务方法。 我这里就简单概括一下先，看看后续有没有时间再来优化补全。 使用redis缓存数据，cache注解简化操作，mybatisPlus简化单表查询操作、公共字段自动填充，提供阿里云短信服务">
+    <meta name="description" content="修改员工账号状态 接口地址:&#x2F;admin&#x2F;employee&#x2F;status&#x2F;&amp;#123;status&amp;#125; 请求方式:POST 请求数据类型:application&#x2F;json 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     id 用户id query true integer(int64)    stat">
 <meta property="og:type" content="website">
-<meta property="og:title" content="前言">
-<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/reggie/">
+<meta property="og:title" content="修改员工账号状态">
+<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E8%B4%A6%E5%8F%B7%E7%8A%B6%E6%80%81.html">
 <meta property="og:site_name" content="Ezhixuan">
-<meta property="og:description" content="比较早的一个练手项目，最近准备把之前的一些项目依次整理复习一下 因为一些不可抗拒的原因，加上当时的编写方式不够成熟，所以这里只挑选一些相对有用的功能记录或重写  但是回顾之后，目前看来感觉都是比较简单正常的业务方法。 我这里就简单概括一下先，看看后续有没有时间再来优化补全。 使用redis缓存数据，cache注解简化操作，mybatisPlus简化单表查询操作、公共字段自动填充，提供阿里云短信服务">
+<meta property="og:description" content="修改员工账号状态 接口地址:&#x2F;admin&#x2F;employee&#x2F;status&#x2F;&amp;#123;status&amp;#125; 请求方式:POST 请求数据类型:application&#x2F;json 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     id 用户id query true integer(int64)    stat">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-04T11:59:52.447Z">
-<meta property="article:modified_time" content="2023-09-04T11:59:52.447Z">
+<meta property="article:published_time" content="2023-09-06T08:18:57.303Z">
+<meta property="article:modified_time" content="2023-09-06T08:18:57.303Z">
 <meta property="article:author" content="Ezhixuan">
 <meta property="article:tag" content="ezhixuan,博客">
 <meta name="twitter:card" content="summary">
@@ -70,7 +70,7 @@
 <body>
   
 
-<div class="l_cover wiki"><article class="cover-wrap md-text"><div class="preview"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/img/leetcode.jpg" height="300px"></div><div class="cover-title"><span>小漠餐馆 - 每天提升一点自己</span></div><div class="description">一个练习项目</div><div class="start-wrap"><a class="button start gradient" href="#start">开始使用</a></div></article></div><hr>
+
 
 
   <div class="l_body" id="start">
@@ -82,13 +82,13 @@
 
 
 
-<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewbox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"/></svg>所有项目</a><a class="title" href="/wiki/reggie/"><div class="main" ff="title">小漠餐馆</div><div class="sub normal cap">学习</div><div class="sub hover cap" style="opacity:0"> Designed by Ezhixuan</div></a></div></widget>
-<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/reggie/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewbox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"/></svg>所有项目</a><a class="title" href="/wiki/xiaomo/"><div class="main" ff="title">小漠餐馆</div><div class="sub normal cap">学习</div><div class="sub hover cap" style="opacity:0"> Designed by Ezhixuan</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/xiaomo/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">前言</span></div><div class="widget-body fs14"><div class="doc-tree active"></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%88%9D%E5%A7%8B%E5%8C%96.html"><span class="toc-text">工程初始化</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97.html"><span class="toc-text">员工登录模块</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%96%B0%E5%A2%9E%E5%91%98%E5%B7%A5.html"><span class="toc-text">新增员工</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E5%88%86%E9%A1%B5.html"><span class="toc-text">员工信息分页</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E8%B4%A6%E5%8F%B7%E7%8A%B6%E6%80%81.html"><span class="toc-text">修改员工账号状态</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E8%B4%A6%E5%8F%B7%E7%8A%B6%E6%80%81"><span class="toc-text"> 修改员工账号状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-text"> controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#impl"><span class="toc-text"> Impl</span></a></li></ol></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E5%91%98%E5%B7%A5id%E6%9F%A5%E8%AF%A2.html"><span class="toc-text">根据员工id查询</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF.html"><span class="toc-text">编辑员工信息</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E5%AF%86%E7%A0%81.html"><span class="toc-text">修改员工密码</span></a></div></div></widget>
 
 
 
@@ -104,16 +104,122 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/reggie/">小漠餐馆</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-04T11:59:52.447Z">2023-09-04</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/xiaomo/">小漠餐馆</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-06T08:18:57.303Z">2023-09-06</time></div></div>
 
   <article class="md-text content wiki">
-  <h1 class="article-title"><span>前言</span></h1>
-  <p>比较早的一个练手项目，最近准备把之前的一些项目依次整理复习一下</p>
-<p>因为一些不可抗拒的原因，加上当时的编写方式不够成熟，所以这里只挑选一些相对有用的功能记录或重写</p>
-<hr>
-<p>但是回顾之后，目前看来感觉都是比较简单正常的业务方法。</p>
-<p>我这里就简单概括一下先，看看后续有没有时间再来优化补全。</p>
-<p>使用redis缓存数据，cache注解简化操作，mybatisPlus简化单表查询操作、公共字段自动填充，提供阿里云短信服务发送短信验证码登录，提供密码登录，使用ThreadLocal存储用户登录信息，全局异常处理。</p>
+  <h1 class="article-title"><span>修改员工账号状态</span></h1>
+  <h2 id="修改员工账号状态"><a class="markdownIt-Anchor" href="#修改员工账号状态"></a> 修改员工账号状态</h2>
+<p><strong>接口地址</strong>:<code>/admin/employee/status/&#123;status&#125;</code></p>
+<p><strong>请求方式</strong>:<code>POST</code></p>
+<p><strong>请求数据类型</strong>:<code>application/json</code></p>
+<p><strong>响应数据类型</strong>:<code>*/*</code></p>
+<p><strong>接口描述</strong>:</p>
+<p><strong>请求参数</strong>:</p>
+<p><strong>请求参数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>请求类型</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>用户id</td>
+<td>query</td>
+<td>true</td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>账号状态</td>
+<td>path</td>
+<td>true</td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>响应状态</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>说明</th>
+<th>schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Result</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>响应参数</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>类型</th>
+<th>schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td></td>
+<td>integer(int32)</td>
+<td>integer(int32)</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>object</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td></td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>响应示例</strong>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: &#123;&#125;,</span><br><span class="line">	<span class="string">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> controller</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ApiOperation(&quot;修改员工账号状态&quot;)</span></span><br><span class="line">  <span class="meta">@ApiImplicitParams(&#123;</span></span><br><span class="line"><span class="meta">    @ApiImplicitParam(name = &quot;status&quot;, value = &quot;账号状态&quot;, required = true, dataType = &quot;Integer&quot;),</span></span><br><span class="line"><span class="meta">    @ApiImplicitParam(name = &quot;id&quot;, value = &quot;用户id&quot;, required = true, dataType = &quot;Long&quot;)</span></span><br><span class="line"><span class="meta">  &#125;)</span></span><br><span class="line">  <span class="meta">@PostMapping(&quot;/status/&#123;status&#125;&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> Result <span class="title function_">updateStatus</span><span class="params">(<span class="meta">@PathVariable</span> Integer status, Long id)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> employeeService.updateStatus(status, id);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="impl"><a class="markdownIt-Anchor" href="#impl"></a> Impl</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 修改员工状态</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> status</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Result <span class="title function_">updateStatus</span><span class="params">(Integer status, Long id)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 数据校验</span></span><br><span class="line">    <span class="keyword">if</span> (status == <span class="literal">null</span> || id == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullDataException</span>(MessageConstant.NULL_DATA);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (StatusConstant.ENABLE.equals(status) || StatusConstant.DISABLE.equals(status))&#123;</span><br><span class="line">      <span class="comment">// 二者满足其一即可</span></span><br><span class="line">      <span class="comment">// 2. 修改员工状态</span></span><br><span class="line">      update().eq(<span class="string">&quot;id&quot;</span>,id).set(<span class="string">&quot;status&quot;</span>, status).update();</span><br><span class="line">      <span class="comment">// 3. 返回结果</span></span><br><span class="line">      <span class="keyword">return</span> Result.success();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BaseException</span>(MessageConstant.STATUS_DATA_ERROR);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
   
   
@@ -121,7 +227,7 @@
 
   </article>
   
-
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E5%88%86%E9%A1%B5.html">员工信息分页</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E5%91%98%E5%B7%A5id%E6%9F%A5%E8%AF%A2.html">根据员工id查询</a></div></section></div>
 
   
 
