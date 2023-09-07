@@ -82,7 +82,7 @@
 <div class="widgets">
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/post/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/528f971c/"><span class="title">Hexo文章图片显示</span></a><a class="item title" href="/post/3ba05f4e/"><span class="title">Knife4j</span></a><a class="item title" href="/post/586965a7/"><span class="title">Xxl-Job</span></a><a class="item title" href="/post/54193/"><span class="title">“Hexo”</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/5904fa7e/"><span class="title">Hexo添加字数统计</span></a><a class="item title" href="/post/4fc13300/"><span class="title">数据库表自增问题</span></a><a class="item title" href="/post/528f971c/"><span class="title">Hexo文章图片显示</span></a><a class="item title" href="/post/3ba05f4e/"><span class="title">Knife4j</span></a><a class="item title" href="/post/586965a7/"><span class="title">Xxl-Job</span></a></div></widget>
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Ezhixuan/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"></a></div></footer>
 
@@ -117,7 +117,25 @@
 <footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/">开源库</a></div><div class="sitemap-group"><span class="fs14">社交</span><a href="/">友链</a><a href="/">留言板</a></div><div class="sitemap-group"><span class="fs14">更多</span><a href="/">关于本站</a><a href="/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Ezhixuan</a> 使用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>
 本博客素材均来源于网络，如有侵权请联系 <a href="mailto:1248909111@qq.com" rel="external nofollow noopener noreferrer" target="_blank">1248909111@qq.com</a> 删除<br>
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
-</div></footer>
+<div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>，<span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>，<span id="busuanzi_container_site_uv">访客数: <span id="busuanzi_value_site_uv"></span>人</span></div></div></footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function createtime() {
+    var now = new Date();
+    var grt= new Date("09/01/2023 00:00:00");
+    now.setTime(now.getTime()+250);
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+    document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+  };
+  setInterval("createtime()",250);
+</script>
 
       <div class="float-panel mobile-only blur" style="display:none">
   <button type="button" class="sidebar-toggle mobile" onclick="sidebar.toggle()">

@@ -5,7 +5,7 @@
   <meta name="generator" content="Hexo 6.3.0">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
   <meta charset="utf-8">
-  <meta name="robots" content="noindex,follow">
+  
 
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://gcore.jsdelivr.net">
@@ -20,21 +20,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>标签：开源框架 - Ezhixuan</title>
+  <title>数据库表自增问题 - Ezhixuan</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Ezhixuan">
-<meta property="og:url" content="https://www.ezhixuan.xyz/tags/%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6/">
+    <meta name="description" content="问题处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库表自增问题">
+<meta property="og:url" content="https://www.ezhixuan.xyz/post/4fc13300/">
 <meta property="og:site_name" content="Ezhixuan">
+<meta property="og:description" content="问题处理">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-07T03:31:14.000Z">
+<meta property="article:modified_time" content="2023-09-07T03:31:14.000Z">
 <meta property="article:author" content="Ezhixuan">
-<meta property="article:tag" content="ezhixuan,博客">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="问题处理">
 <meta name="twitter:card" content="summary">
   
   
   
-  <meta name="keywords" content="ezhixuan,博客">
+  <meta name="keywords" content="mysql,问题处理">
 
   <!-- feed -->
   
@@ -67,8 +72,10 @@
   
 
 
+
+
   <div class="l_body" id="start">
-    <aside class="l_left" layout>
+    <aside class="l_left" layout="post">
     
 
   
@@ -82,34 +89,91 @@
 <div class="widgets">
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/post/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/5904fa7e/"><span class="title">Hexo添加字数统计</span></a><a class="item title" href="/post/4fc13300/"><span class="title">数据库表自增问题</span></a><a class="item title" href="/post/528f971c/"><span class="title">Hexo文章图片显示</span></a><a class="item title" href="/post/3ba05f4e/"><span class="title">Knife4j</span></a><a class="item title" href="/post/586965a7/"><span class="title">Xxl-Job</span></a></div></widget>
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数据库表自增问题</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%87%AA%E5%A2%9E%E9%97%AE%E9%A2%98"><span class="toc-text"> 数据库表自增问题</span></a></li></ol></div></div></widget>
+
+
+
+
 </div>
 <footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Ezhixuan/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"></a></div></footer>
 
     </aside>
-    <div class="l_main list">
+    <div class="l_main">
       
-  
-
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/img/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Ezhixuan</div><div class="sub normal cap">我们都要努力成为更好的自己</div><div class="sub hover cap" style="opacity:0"> 如果遇到了，就记录下来</div></a></div></header>
-
-
 
       
 
-  
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/mysql/">mysql</a></div><div id="post-meta">发布于&nbsp;<time datetime="2023-09-07T03:31:14.000Z">2023-09-07</time></div></div>
+
+<article class="md-text content post">
+<h1 class="article-title"><span>数据库表自增问题</span></h1>
+<h2 id="数据库表自增问题"><a class="markdownIt-Anchor" href="#数据库表自增问题"></a> 数据库表自增问题</h2>
+<blockquote>
+<p>前言：因为在使用mp时没有在配置文件中设置自增策略，也没有使用@TableId注解去修饰id字段，导致数据库中的id在添加时使用mp默认的雪花算法，但这并不是我期望在本表中使用的，所以需要修改</p>
+</blockquote>
+<p>首先我赶紧在id字段上添加上@TableId(type = IdType.<em>AUTO</em>)</p>
+<p>好消息是id变成+1的自增了</p>
+<p>坏消息是仍然保持了最迟一次生成的雪花值在+1自增，即使这个雪花值已经被删除。</p>
+<hr>
+<p>MySQL 是一个开源的关系型数据库管理系统，广泛应用于各种企业和互联网应用中。在 MySQL 数据库中，自增键是一种非常常用的类型，能够简化开发者的开发工作。但有时候我们需要能够动态修改自增值。下面介绍一下如何使用 MySQL 实现动态修改自增值的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ALTER TABLE tableName AUTO_INCREMENT = value;</span><br></pre></td></tr></table></figure>
+<p>以上代码可以改变指定表的 AUTO_INCREMENT 值，设置自增键的下一个值为 value。首先需要了解的是，MySQL 中自增键是用于提供唯一值的一种类型，即每个自增键值都必须是唯一的。我们可以通过以下步骤实现动态修改自增值：</p>
+<ol>
+<li>
+<p>查看数据库中的所有表：</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
+<p>确定需要修改自增值的表。</p>
+</li>
+<li>
+<p>查看表的结构信息：</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">DESCRIBE tableName<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>确定需要修改自增值的字段和表名。</p>
+</li>
+<li>
+<p>使用ALTER TABLE命令修改自增值：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName AUTO_INCREMENT <span class="operator">=</span> <span class="keyword">value</span>;</span><br></pre></td></tr></table></figure>
+<p>将自增键的下一个值设置为指定的value。</p>
+</li>
+</ol>
+<p>通过以上步骤，就可以在MySQL数据库中实现动态修改自增值。</p>
 
 
   
-
-<div class="nav-wrap"><nav class="sub post cap"><a href="/">近期发布</a><a href="/categories">分类</a><a class="active" href="/tags">标签：开源框架</a><a href="/archives">归档</a><a href="/friends/rss/">这里什么都没有</a></nav></div>
-
-  <div class="post-list post"><a class="post-card post " href="/post/586965a7/">
-<article class="md-text"><h2 class="post-title">Xxl-Job</h2><div class="excerpt"><p>学习记录</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2023-09-01T17:06:02.000Z">2023-09-02</time></span></div></article>
-</a></div>
-  
+  <script>
+    let tianliGPT_postSelector = '.md-text.content.post';
+    let tianliGPT_key = '0b206f6e6a324c694de1';
+  </script>
+  <script defer src="https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.9/tianli_gpt.js"></script>
 
 
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>欢迎积极交流讨论，如有疑问请联系我</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://www.ezhixuan.xyz/post/4fc13300/"></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/b32ef3da1162a.svg"></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://www.ezhixuan.xyz/post/4fc13300/&title=数据库表自增问题 - Ezhixuan&summary=问题处理"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/80c07e4dbb303.svg"></a><a class="social share-item email" href="mailto:?subject=数据库表自增问题 - Ezhixuan&amp;body=https://www.ezhixuan.xyz/post/4fc13300/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/a1b00e20f425d.svg"></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/8411ed322ced6.svg"></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://www.ezhixuan.xyz/post/4fc13300/"></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/5904fa7e/">Hexo添加字数统计</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/528f971c/">Hexo文章图片显示</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts"></div>
+
+
+
+  <div class="related-wrap md-text reveal" id="comments">
+    <section class="header cmt-title cap theme">
+      快来参与讨论吧
+    </section>
+    <section class="body cmt-body waline">
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"/></svg></div>
+
+    </section>
+  </div>
 
 
 
@@ -304,6 +368,31 @@
 
 
 <!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://comment.ezhixuan.xyz/","commentCount":true,"pageview":false,"locale":{"placeholder":null},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs"]}, {
+        el: '#waline_container',
+        path: path,
+        
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
 
 
 

@@ -238,7 +238,7 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
       <div class="title cap theme">您可能感兴趣的文章</div>
     </section>
     <section class="body">
-    <div class="related-posts"><a class="item" href="\post\528f971c\" title="Hexo文章图片显示"><span class="title">Hexo文章图片显示</span><span class="excerpt">主题优化</span></a><a class="item" href="\post\586965a7\" title="Xxl-Job"><span class="title">Xxl-Job</span><span class="excerpt">学习记录</span></a></div></section></div>
+    <div class="related-posts"><a class="item" href="\post\528f971c\" title="Hexo文章图片显示"><span class="title">Hexo文章图片显示</span><span class="excerpt">主题优化</span></a><a class="item" href="\post\5904fa7e\" title="Hexo添加字数统计"><span class="title">Hexo添加字数统计</span><span class="excerpt">主题美化</span></a><a class="item" href="\post\586965a7\" title="Xxl-Job"><span class="title">Xxl-Job</span><span class="excerpt">学习记录</span></a></div></section></div>
 
 
 
@@ -260,7 +260,25 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
 <footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/">开源库</a></div><div class="sitemap-group"><span class="fs14">社交</span><a href="/">友链</a><a href="/">留言板</a></div><div class="sitemap-group"><span class="fs14">更多</span><a href="/">关于本站</a><a href="/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Ezhixuan</a> 使用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>
 本博客素材均来源于网络，如有侵权请联系 <a href="mailto:1248909111@qq.com" rel="external nofollow noopener noreferrer" target="_blank">1248909111@qq.com</a> 删除<br>
 本博客所有文章除特别声明外，均采用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
-</div></footer>
+<div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>，<span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>，<span id="busuanzi_container_site_uv">访客数: <span id="busuanzi_value_site_uv"></span>人</span></div></div></footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function createtime() {
+    var now = new Date();
+    var grt= new Date("09/01/2023 00:00:00");
+    now.setTime(now.getTime()+250);
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+    document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+  };
+  setInterval("createtime()",250);
+</script>
 
       <div class="float-panel mobile-only blur" style="display:none">
   <button type="button" class="sidebar-toggle mobile" onclick="sidebar.toggle()">
