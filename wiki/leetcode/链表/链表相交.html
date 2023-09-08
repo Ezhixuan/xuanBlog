@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://gcore.jsdelivr.net">
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="//unpkg.com">
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>Leetcode：链表相交 - Ezhixuan</title>
+
+  
+    <meta name="description" content="链表相交 面试题 02.07. 链表相交 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。 图示两个链表在节点 c1 开始相交**：** img 题目数据 保证 整个链式结构中不存在环。 注意，函数返回结果后，链表必须 保持其原始结构 。 示例 1： img 输入：intersectVal &#x3D; 8, listA">
+<meta property="og:type" content="website">
+<meta property="og:title" content="链表相交">
+<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html">
+<meta property="og:site_name" content="Ezhixuan">
+<meta property="og:description" content="链表相交 面试题 02.07. 链表相交 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 null 。 图示两个链表在节点 c1 开始相交**：** img 题目数据 保证 整个链式结构中不存在环。 注意，函数返回结果后，链表必须 保持其原始结构 。 示例 1： img 输入：intersectVal &#x3D; 8, listA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_2.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_3.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_2.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_3.png">
+<meta property="article:published_time" content="2023-09-08T17:08:27.808Z">
+<meta property="article:modified_time" content="2023-09-08T17:08:27.808Z">
+<meta property="article:author" content="Ezhixuan">
+<meta property="article:tag" content="ezhixuan,博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png">
+  
+  
+  
+  <meta name="keywords" content="ezhixuan,博客">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ezhixuan" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://s1.ax1x.com/2023/09/02/pPB0E4O.png">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+    <script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class="l_body" id="start">
+    <aside class="l_left" layout="wiki">
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewbox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"/></svg>所有项目</a><a class="title" href="/wiki/leetcode/"><div class="main" ff="title">Leetcode</div><div class="sub normal cap">学习</div><div class="sub hover cap" style="opacity:0"> Designed by Ezhixuan</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/leetcode/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html"><span class="toc-text">关于数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html"><span class="toc-text">二分查找</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html"><span class="toc-text">有序数组的平方</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html"><span class="toc-text">长度最小的子数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html"><span class="toc-text">螺旋矩阵II</span></a></div></div><div class="widget-header cap dis-select"><span class="name">链表</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/N%E7%9A%87%E5%90%8E.html"><span class="toc-text">N皇后</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%85%B3%E4%BA%8E%E9%93%BE%E8%A1%A8.html"><span class="toc-text">关于链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除链表元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.html"><span class="toc-text">设计链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.html"><span class="toc-text">反转链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9%20.html"><span class="toc-text">两两交换链表中的节点</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9.html"><span class="toc-text">删除链表的倒数第 N 个结点</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html"><span class="toc-text">链表相交</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4"><span class="toc-text"> 链表相交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98"><span class="toc-text"> 解题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95"><span class="toc-text"> 个人看法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952"><span class="toc-text"> 解法2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98-2"><span class="toc-text"> 解题</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+
+
+    </aside>
+    <div class="l_main">
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/leetcode/">Leetcode</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-08T17:08:27.808Z">2023-09-09</time></div></div>
+
+  <article class="md-text content wiki">
+  <h1 class="article-title"><span>链表相交</span></h1>
+  <h2 id="链表相交"><a class="markdownIt-Anchor" href="#链表相交"></a> 链表相交</h2>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">面试题 02.07. 链表相交</a></p>
+<p>给你两个单链表的头节点 <code>headA</code> 和 <code>headB</code> ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 <code>null</code> 。</p>
+<p>图示两个链表在节点 <code>c1</code> 开始相交**：**</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png"><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div></a></p>
+<p>题目数据 <strong>保证</strong> 整个链式结构中不存在环。</p>
+<p><strong>注意</strong>，函数返回结果后，链表必须 <strong>保持其原始结构</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png"><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3</span><br><span class="line">输出：Intersected at &#x27;8&#x27;</span><br><span class="line">解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。</span><br><span class="line">从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。</span><br><span class="line">在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png"><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_2.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1</span><br><span class="line">输出：Intersected at &#x27;2&#x27;</span><br><span class="line">解释：相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。</span><br><span class="line">从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。</span><br><span class="line">在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png"><div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_3.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2</span><br><span class="line">输出：null</span><br><span class="line">解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。</span><br><span class="line">由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。</span><br><span class="line">这两个链表不相交，因此返回 null 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>listA</code> 中节点数目为 <code>m</code></li>
+<li><code>listB</code> 中节点数目为 <code>n</code></li>
+<li><code>0 &lt;= m, n &lt;= 3 * 104</code></li>
+<li><code>1 &lt;= Node.val &lt;= 105</code></li>
+<li><code>0 &lt;= skipA &lt;= m</code></li>
+<li><code>0 &lt;= skipB &lt;= n</code></li>
+<li>如果 <code>listA</code> 和 <code>listB</code> 没有交点，<code>intersectVal</code> 为 <code>0</code></li>
+<li>如果 <code>listA</code> 和 <code>listB</code> 有交点，<code>intersectVal == listA[skipA + 1] == listB[skipB + 1]</code></li>
+</ul>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>通过观察例一例二和例三，我们可以看出，假设链表存在相交，那么相交之后的所有节点是相同的，因此假如存在相交，相交后节点数是相同的。</p>
+<p>那么我们只需要依次遍历得到链表的长度，lenA - lenB = x 将更长的链表先移动x步，再依次比较即可。</p>
+<h3 id="解题"><a class="markdownIt-Anchor" href="#解题"></a> 解题</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 初始化变量</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">lenA</span> <span class="operator">=</span> <span class="number">0</span>, lenB = <span class="number">0</span>;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">currA</span> <span class="operator">=</span> headA, currB = headB;</span><br><span class="line">    <span class="comment">// 1.1 计算长度</span></span><br><span class="line">    <span class="keyword">while</span> (currA != <span class="literal">null</span>) &#123;</span><br><span class="line">      lenA++;</span><br><span class="line">      currA = currA.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (currB != <span class="literal">null</span>) &#123;</span><br><span class="line">      lenB++;</span><br><span class="line">      currB = currB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2. 选出更长的一方</span></span><br><span class="line">    <span class="keyword">if</span> (lenB &gt; lenA) &#123;</span><br><span class="line">      <span class="type">ListNode</span> <span class="variable">temp</span> <span class="operator">=</span> headA;</span><br><span class="line">      headA = headB;</span><br><span class="line">      headB = temp;</span><br><span class="line">      <span class="type">int</span> <span class="variable">tempLen</span> <span class="operator">=</span> lenA;</span><br><span class="line">      lenA = lenB;</span><br><span class="line">      lenB = tempLen;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3. 计算差值并移动</span></span><br><span class="line">    currA = headA;</span><br><span class="line">    currB = headB;</span><br><span class="line">    <span class="type">int</span> <span class="variable">diff</span> <span class="operator">=</span> lenA - lenB;</span><br><span class="line">    <span class="keyword">while</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      currA = currA.next;</span><br><span class="line">      diff--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 4. 遍历比较</span></span><br><span class="line">    <span class="keyword">while</span> (currA != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (currA == currB) &#123;</span><br><span class="line">        <span class="keyword">return</span> currA;</span><br><span class="line">      &#125;</span><br><span class="line">      currA = currA.next;</span><br><span class="line">      currB = currB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 5. 返回</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="个人看法"><a class="markdownIt-Anchor" href="#个人看法"></a> 个人看法</h3>
+<p>这题实际上实现起来的难度并不大，是一题简单题，主要在于对题目的理解。这里提供一种更简单的实现，上一次看到就不明觉厉，现在再看还是羡慕大佬的思维。</p>
+<h2 id="解法2"><a class="markdownIt-Anchor" href="#解法2"></a> 解法2</h2>
+<p>以示例一为例</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_1.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div>
+<p>我们看到链表会相交并且相交于节点8，此时相交后的长度为3，A相交前的长度为2，B相交前的长度为3。</p>
+<p>我们令链表A在遍历完A链表后去遍历链表B</p>
+<p>令链表B在遍历完链表B后去遍历链表A</p>
+<p>那么会存在</p>
+<p>A走 2(A相交前的长度) + 3(相交后的长度) + 3(B相交前的长度)</p>
+<p>B走 3(B相交前的长度) + 3(相交后的长度) + 2(A相交前的长度)</p>
+<p>此时，他们会在相同的步数下相交与同一点也就是节点8</p>
+<hr>
+<p>再以示例二为例</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_2.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div>
+<p>依旧会存在</p>
+<p>A走 3(A相交前的长度) + 2(相交后的长度) + 1(B相交前的长度)</p>
+<p>B走 1(B相交前的长度) + 2(相交后的长度) + 3(A相交前的长度)</p>
+<p>在相同的步数下交于节点2</p>
+<p>那么也就是说，假如存在某一个节点使得两条链表相交，那么只需要同时开始遍历并在遍历完自身后交换遍历，则一定会在某一点相交。</p>
+<hr>
+<p>示例三</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_example_3.png" alt="img"></div><div class="image-meta"><span class="image-caption center">img</span></div></div>
+<p>示例三是不存在链表相交的，但是我们可以</p>
+<p>把链表A 看作 2 -》 6 -》 4 -》 null</p>
+<p>把链表B 看作 1 -》 5 -》 null</p>
+<p>此时可以看作A和B相交于null</p>
+<p>总结来说就是，<strong>两天链表同时开始遍历并在遍历完自身后交换遍历，假如两点在null相遇，则表示两条链表没有交点，假如两点相遇在某个点，那么这个点就是两条链表的起始交点。</strong></p>
+<p>下面给出实现代码</p>
+<h3 id="解题-2"><a class="markdownIt-Anchor" href="#解题-2"></a> 解题</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 初始化变量</span></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">currA</span> <span class="operator">=</span> headA, currB = headB;</span><br><span class="line">    <span class="comment">// 2. 确定终止条件，当两节点相遇时结束循环</span></span><br><span class="line">    <span class="keyword">while</span>(currA != currB)&#123;</span><br><span class="line">      currA = currA == <span class="literal">null</span> ? headB : currA.next;</span><br><span class="line">      currB = currB == <span class="literal">null</span> ? headA : currB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 3. 直接返回二者之一即可</span></span><br><span class="line">    <span class="keyword">return</span> currA;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9.html">删除链表的倒数第 N 个结点</a></div><div class="item" id="next"></div></section></div>
+
+  
+
+  <div class="related-wrap md-text reveal" id="comments">
+    <section class="header cmt-title cap theme">
+      快来参与讨论吧
+    </section>
+    <section class="body cmt-body waline">
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"/></svg></div>
+
+    </section>
+  </div>
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/">开源库</a></div><div class="sitemap-group"><span class="fs14">社交</span><a href="/">友链</a><a href="/">留言板</a></div><div class="sitemap-group"><span class="fs14">更多</span><a href="/">关于本站</a><a href="/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Ezhixuan</a> 使用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>
+本博客素材均来源于网络，如有侵权请联系 <a href="mailto:1248909111@qq.com" rel="external nofollow noopener noreferrer" target="_blank">1248909111@qq.com</a> 删除<br>
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>，<span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>，<span id="busuanzi_container_site_uv">访客数: <span id="busuanzi_value_site_uv"></span>人</span></div></div></footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function createtime() {
+    var now = new Date();
+    var grt= new Date("09/01/2023 00:00:00");
+    now.setTime(now.getTime()+250);
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+    document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+  };
+  setInterval("createtime()",250);
+</script>
+
+      <div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle mobile" onclick="sidebar.toggle()">
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"/><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"/></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class="scripts">
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://comment.ezhixuan.xyz/","commentCount":true,"pageview":false,"locale":{"placeholder":null},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs"]}, {
+        el: '#waline_container',
+        path: path,
+        
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
