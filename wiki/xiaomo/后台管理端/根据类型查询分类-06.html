@@ -20,18 +20,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>小漠餐馆：启用禁用分类 - Ezhixuan</title>
+  <title>小漠餐馆：根据类型查询分类 - Ezhixuan</title>
 
   
-    <meta name="description" content="启用禁用分类 接口地址:&#x2F;admin&#x2F;category&#x2F;status&#x2F;&amp;#123;status&amp;#125; 请求方式:POST 请求数据类型:application&#x2F;json 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     id 分类id query true integer(int64)    status">
+    <meta name="description" content="根据类型查询分类 接口地址:&#x2F;admin&#x2F;category&#x2F;list 请求方式:GET 请求数据类型:application&#x2F;x-www-form-urlencoded 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     type 分类类型 query true integer(int32)     响应状态:">
 <meta property="og:type" content="website">
-<meta property="og:title" content="启用禁用分类">
+<meta property="og:title" content="根据类型查询分类">
 <meta property="og:url" content="https://www.ezhixuan.xyz/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9F%A5%E8%AF%A2%E5%88%86%E7%B1%BB-06.html">
 <meta property="og:site_name" content="Ezhixuan">
-<meta property="og:description" content="启用禁用分类 接口地址:&#x2F;admin&#x2F;category&#x2F;status&#x2F;&amp;#123;status&amp;#125; 请求方式:POST 请求数据类型:application&#x2F;json 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     id 分类id query true integer(int64)    status">
+<meta property="og:description" content="根据类型查询分类 接口地址:&#x2F;admin&#x2F;category&#x2F;list 请求方式:GET 请求数据类型:application&#x2F;x-www-form-urlencoded 响应数据类型:*&#x2F;* 接口描述: 请求参数: 请求参数:    参数名称 参数说明 请求类型 是否必须 数据类型 schema     type 分类类型 query true integer(int32)     响应状态:">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-07T03:43:20.687Z">
-<meta property="article:modified_time" content="2023-09-07T03:43:20.687Z">
+<meta property="article:published_time" content="2023-09-09T04:46:37.714Z">
+<meta property="article:modified_time" content="2023-09-09T04:46:37.714Z">
 <meta property="article:author" content="Ezhixuan">
 <meta property="article:tag" content="ezhixuan,博客">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
 
 
 
-<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">员工操作</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%88%9D%E5%A7%8B%E5%8C%96.html"><span class="toc-text">工程初始化</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97.html"><span class="toc-text">员工登录模块</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%96%B0%E5%A2%9E%E5%91%98%E5%B7%A5.html"><span class="toc-text">新增员工</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E5%88%86%E9%A1%B5.html"><span class="toc-text">员工信息分页</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E8%B4%A6%E5%8F%B7%E7%8A%B6%E6%80%81.html"><span class="toc-text">修改员工账号状态</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E5%91%98%E5%B7%A5id%E6%9F%A5%E8%AF%A2.html"><span class="toc-text">根据员工id查询</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF.html"><span class="toc-text">编辑员工信息</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E5%AF%86%E7%A0%81.html"><span class="toc-text">修改员工密码</span></a></div></div><div class="widget-header cap dis-select"><span class="name">分类操作</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%96%B0%E5%A2%9E%E5%88%86%E7%B1%BB-01.html"><span class="toc-text">新增分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%86%E7%B1%BB%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2-02.html"><span class="toc-text">分类分页查询</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%A0%E9%99%A4%E5%88%86%E7%B1%BB-03.html"><span class="toc-text">删除分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%88%86%E7%B1%BB-04.html"><span class="toc-text">修改分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%90%AF%E7%94%A8%E3%80%81%E7%A6%81%E7%94%A8%E5%88%86%E7%B1%BB-05.html"><span class="toc-text">启用禁用分类</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9F%A5%E8%AF%A2%E5%88%86%E7%B1%BB-06.html"><span class="toc-text">启用禁用分类</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E7%A6%81%E7%94%A8%E5%88%86%E7%B1%BB"><span class="toc-text"> 启用禁用分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-text"> controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#impl"><span class="toc-text"> Impl</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">员工操作</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%88%9D%E5%A7%8B%E5%8C%96.html"><span class="toc-text">工程初始化</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97.html"><span class="toc-text">员工登录模块</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%96%B0%E5%A2%9E%E5%91%98%E5%B7%A5.html"><span class="toc-text">新增员工</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E5%88%86%E9%A1%B5.html"><span class="toc-text">员工信息分页</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E8%B4%A6%E5%8F%B7%E7%8A%B6%E6%80%81.html"><span class="toc-text">修改员工账号状态</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E5%91%98%E5%B7%A5id%E6%9F%A5%E8%AF%A2.html"><span class="toc-text">根据员工id查询</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF.html"><span class="toc-text">编辑员工信息</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%91%98%E5%B7%A5%E5%AF%86%E7%A0%81.html"><span class="toc-text">修改员工密码</span></a></div></div><div class="widget-header cap dis-select"><span class="name">分类操作</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%96%B0%E5%A2%9E%E5%88%86%E7%B1%BB-01.html"><span class="toc-text">新增分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%86%E7%B1%BB%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2-02.html"><span class="toc-text">分类分页查询</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%A0%E9%99%A4%E5%88%86%E7%B1%BB-03.html"><span class="toc-text">删除分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%88%86%E7%B1%BB-04.html"><span class="toc-text">修改分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%90%AF%E7%94%A8%E3%80%81%E7%A6%81%E7%94%A8%E5%88%86%E7%B1%BB-05.html"><span class="toc-text">启用禁用分类</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9F%A5%E8%AF%A2%E5%88%86%E7%B1%BB-06.html"><span class="toc-text">根据类型查询分类</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9F%A5%E8%AF%A2%E5%88%86%E7%B1%BB"><span class="toc-text"> 根据类型查询分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-text"> controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#impl"><span class="toc-text"> Impl</span></a></li></ol></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">菜品操作</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E8%8F%9C%E5%93%81-20.html"><span class="toc-text">分页查询菜品</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%B7%BB%E5%8A%A0%E8%8F%9C%E5%93%81-21.html"><span class="toc-text">添加菜品</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AEid%E6%9F%A5%E8%AF%A2%E8%8F%9C%E5%93%81-22.html"><span class="toc-text">根据id查询菜品</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E8%8F%9C%E5%93%81-23.html"><span class="toc-text">修改菜品</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E8%8F%9C%E5%93%81%E7%8A%B6%E6%80%81-24.html"><span class="toc-text">修改菜品状态</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AEids%E5%88%A0%E9%99%A4%E8%8F%9C%E5%93%81%E4%B8%80%E4%B8%AA%E6%88%96%E8%80%85%E5%A4%9A%E4%B8%AA%E8%8F%9C%E5%93%81-25.html"><span class="toc-text">根据ids删除菜品一个或者多个菜品</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E6%A0%B9%E6%8D%AE%E5%88%86%E7%B1%BBid%E6%9F%A5%E8%AF%A2%E8%8F%9C%E5%93%81-26.html"><span class="toc-text">根据分类id查询菜品</span></a></div></div></widget>
 
 
 
@@ -104,14 +104,14 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/xiaomo/">小漠餐馆</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-07T03:43:20.687Z">2023-09-07</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/xiaomo/">小漠餐馆</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-09T04:46:37.714Z">2023-09-09</time></div></div>
 
   <article class="md-text content wiki">
-  <h1 class="article-title"><span>启用禁用分类</span></h1>
-  <h2 id="启用禁用分类"><a class="markdownIt-Anchor" href="#启用禁用分类"></a> 启用禁用分类</h2>
-<p><strong>接口地址</strong>:<code>/admin/category/status/&#123;status&#125;</code></p>
-<p><strong>请求方式</strong>:<code>POST</code></p>
-<p><strong>请求数据类型</strong>:<code>application/json</code></p>
+  <h1 class="article-title"><span>根据类型查询分类</span></h1>
+  <h2 id="根据类型查询分类"><a class="markdownIt-Anchor" href="#根据类型查询分类"></a> 根据类型查询分类</h2>
+<p><strong>接口地址</strong>:<code>/admin/category/list</code></p>
+<p><strong>请求方式</strong>:<code>GET</code></p>
+<p><strong>请求数据类型</strong>:<code>application/x-www-form-urlencoded</code></p>
 <p><strong>响应数据类型</strong>:<code>*/*</code></p>
 <p><strong>接口描述</strong>:</p>
 <p><strong>请求参数</strong>:</p>
@@ -129,17 +129,9 @@
 </thead>
 <tbody>
 <tr>
-<td>id</td>
-<td>分类id</td>
+<td>type</td>
+<td>分类类型</td>
 <td>query</td>
-<td>true</td>
-<td>integer(int64)</td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>分类状态</td>
-<td>path</td>
 <td>true</td>
 <td>integer(int32)</td>
 <td></td>
@@ -159,12 +151,7 @@
 <tr>
 <td>200</td>
 <td>OK</td>
-<td>Result«string»</td>
-</tr>
-<tr>
-<td>201</td>
-<td>Created</td>
-<td></td>
+<td>Result«List«Category»»</td>
 </tr>
 <tr>
 <td>401</td>
@@ -203,7 +190,61 @@
 <tr>
 <td>data</td>
 <td></td>
+<td>array</td>
+<td>Category</td>
+</tr>
+<tr>
+<td>  createTime</td>
+<td></td>
+<td>string(date-time)</td>
+<td></td>
+</tr>
+<tr>
+<td>  createUser</td>
+<td></td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>  id</td>
+<td></td>
+<td>integer(int64)</td>
+<td></td>
+</tr>
+<tr>
+<td>  name</td>
+<td></td>
 <td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>  sort</td>
+<td></td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>  status</td>
+<td></td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>  type</td>
+<td></td>
+<td>integer(int32)</td>
+<td></td>
+</tr>
+<tr>
+<td>  updateTime</td>
+<td></td>
+<td>string(date-time)</td>
+<td></td>
+</tr>
+<tr>
+<td>  updateUser</td>
+<td></td>
+<td>integer(int64)</td>
 <td></td>
 </tr>
 <tr>
@@ -215,11 +256,11 @@
 </tbody>
 </table>
 <p><strong>响应示例</strong>:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="string">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: [</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;createTime&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">			<span class="string">&quot;createUser&quot;</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">&quot;id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">&quot;name&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">			<span class="string">&quot;sort&quot;</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">&quot;status&quot;</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">&quot;type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">			<span class="string">&quot;updateTime&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">			<span class="string">&quot;updateUser&quot;</span>: <span class="number">0</span></span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="string">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> controller</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 启用、禁用分类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> status</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/status/&#123;status&#125;&quot;)</span></span><br><span class="line">    <span class="meta">@ApiOperation(&quot;启用禁用分类&quot;)</span></span><br><span class="line">    <span class="meta">@ApiImplicitParams(&#123;</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name = &quot;status&quot;, value = &quot;分类状态&quot;, required = true, dataType = &quot;Integer&quot;, dataTypeClass = Integer.class),</span></span><br><span class="line"><span class="meta">            @ApiImplicitParam(name = &quot;id&quot;, value = &quot;分类id&quot;, required = true, dataType = &quot;Long&quot;, dataTypeClass = Long.class)</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> Result&lt;String&gt; <span class="title function_">startOrStop</span><span class="params">(<span class="meta">@PathVariable(&quot;status&quot;)</span> Integer status, Long id)</span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;启用禁用分类：&#123;&#125;，&#123;&#125;&quot;</span>, status, id);</span><br><span class="line">        <span class="keyword">return</span> categoryService.startOrStop(status,id);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 根据类型查询分类</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> type</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@GetMapping(&quot;/list&quot;)</span></span><br><span class="line">  <span class="meta">@ApiOperation(&quot;根据类型查询分类&quot;)</span></span><br><span class="line">  <span class="meta">@ApiImplicitParam(</span></span><br><span class="line"><span class="meta">      name = &quot;type&quot;,</span></span><br><span class="line"><span class="meta">      value = &quot;分类类型&quot;,</span></span><br><span class="line"><span class="meta">      required = true,</span></span><br><span class="line"><span class="meta">      dataType = &quot;Integer&quot;,</span></span><br><span class="line"><span class="meta">      dataTypeClass = Integer.class)</span></span><br><span class="line">  <span class="keyword">public</span> Result&lt;List&lt;Category&gt;&gt; <span class="title function_">list</span><span class="params">(<span class="meta">@RequestParam(value = &quot;type&quot;, required = false)</span> Integer type)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;根据类型查询分类：&#123;&#125;&quot;</span>, type);</span><br><span class="line">    <span class="keyword">return</span> categoryService.list(type);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="impl"><a class="markdownIt-Anchor" href="#impl"></a> Impl</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 启用或禁用分类</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> status</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Result&lt;String&gt; <span class="title function_">startOrStop</span><span class="params">(Integer status, Long id)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 校验参数</span></span><br><span class="line">    <span class="keyword">if</span> (status == <span class="literal">null</span> || id == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullDataException</span>(MessageConstant.NULL_DATA);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2. 修改</span></span><br><span class="line">    <span class="type">Category</span> <span class="variable">category</span> <span class="operator">=</span></span><br><span class="line">        Category.builder()</span><br><span class="line">            .id(id)</span><br><span class="line">            .updateTime(LocalDateTime.now())</span><br><span class="line">            .updateUser(BaseContext.getCurrentId())</span><br><span class="line">            .status(status)</span><br><span class="line">            .build();</span><br><span class="line">    updateById(category);</span><br><span class="line">    <span class="comment">// 3. 返回</span></span><br><span class="line">    <span class="keyword">return</span> Result.success();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 查询所有分类</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> type</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">public</span> Result&lt;List&lt;Category&gt;&gt; <span class="title function_">list</span><span class="params">(Integer type)</span> &#123;</span><br><span class="line">   <span class="comment">// 1. 参数校验</span></span><br><span class="line">   <span class="keyword">if</span> (type == <span class="literal">null</span>)&#123;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">NullDataException</span>(MessageConstant.NULL_DATA);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// 2. 查询</span></span><br><span class="line">   List&lt;Category&gt; list = list(Wrappers.&lt;Category&gt;lambdaQuery().eq(Category::getStatus, StatusConstant.ENABLE).eq(type != <span class="literal">null</span>, Category::getType, type).orderByDesc(Category::getSort));</span><br><span class="line">   <span class="comment">// 3. 返回</span></span><br><span class="line">   <span class="keyword">return</span> Result.success(list);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
   
   
@@ -227,7 +268,7 @@
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E4%BF%AE%E6%94%B9%E5%88%86%E7%B1%BB-04.html">修改分类</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%90%AF%E7%94%A8%E3%80%81%E7%A6%81%E7%94%A8%E5%88%86%E7%B1%BB-05.html">启用禁用分类</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/xiaomo/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%AB%AF/%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E8%8F%9C%E5%93%81-20.html">分页查询菜品</a></div></section></div>
 
   
 
