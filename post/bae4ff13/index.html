@@ -53,6 +53,11 @@
 <meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910111141708.png">
 <meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910111259652.png">
 <meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910111542814.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910151725241.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910151738447.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910151746275.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910152127127.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/bae4ff13/image-20230910152237788.png">
 <meta property="article:published_time" content="2023-09-09T16:35:48.000Z">
 <meta property="article:modified_time" content="2023-09-09T16:35:48.000Z">
 <meta property="article:author" content="Ezhixuan">
@@ -291,19 +296,15 @@
 <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910111542814.png" alt="image-20230910111542814"></div><div class="image-meta"><span class="image-caption center">image-20230910111542814</span></div></div>
 <h3 id="sortedset-2"><a class="markdownIt-Anchor" href="#sortedset-2"></a> sortedSet</h3>
 <p>SortedSet的常见命令有：</p>
-<ul>
-<li>ZADD key score member：添加一个或多个元素到sorted set ，如果已经存在则更新其score值</li>
-<li>ZREM key member：删除sorted set中的一个指定元素</li>
-<li>ZSCORE key member : 获取sorted set中的指定元素的score值</li>
-<li>ZRANK key member：获取sorted set 中的指定元素的排名</li>
-<li>ZCARD key：获取sorted set中的元素个数</li>
-<li>ZCOUNT key min max：统计score值在给定范围内的所有元素的个数</li>
-<li>ZINCRBY key increment member：让sorted set中的指定元素自增，步长为指定的increment值</li>
-<li>ZRANGE key min max：按照score排序后，获取指定排名范围内的元素</li>
-<li>ZRANGEBYSCORE key min max：按照score排序后，获取指定score范围内的元素</li>
-<li>ZDIFF、ZINTER、ZUNION：求差集、交集、并集</li>
-</ul>
-<p>注意：所有的排名默认都是升序，如果要降序则在命令的Z后面添加REV即可，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ZADD:添加一个或多个元素到sorted set ，如果已经存在则更新其score值</span><br><span class="line">zadd key score member [score member ... score member]</span><br><span class="line"># ZSCORE:获取sorted set中的指定元素的score值</span><br><span class="line">zscore key member</span><br><span class="line"># ZCARD:获取sorted set中的元素个数</span><br><span class="line">zcard key</span><br><span class="line"># ZRANK(ZREVRANK):升序(降序)获取sorted set 中的指定元素的排名</span><br><span class="line">zrank key member</span><br><span class="line"># ZCOUNT:统计score值在给定范围内的所有元素的个数</span><br><span class="line">zcount key min max</span><br><span class="line"># ZRANGE(ZREVRANGE):按照score排序后，升序(降序)获取指定排名范围内的元素</span><br><span class="line">zrange key min max</span><br><span class="line"># ZRANGEBYSCORE(ZREVRANGEBYSCORE):按照score排序后，升序(降序)获取指定score范围内的元素</span><br><span class="line">zrangebyscore key min max</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910151725241.png" alt="image-20230910151725241"></div><div class="image-meta"><span class="image-caption center">image-20230910151725241</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910151738447.png" alt="image-20230910151738447"></div><div class="image-meta"><span class="image-caption center">image-20230910151738447</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910151746275.png" alt="image-20230910151746275"></div><div class="image-meta"><span class="image-caption center">image-20230910151746275</span></div></div>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ZINCRBY:让sorted set中的指定元素自增，步长为指定的increment值</span><br><span class="line">zincrby key increment member</span><br><span class="line"># ZREM:删除sorted set中的一个或多个指定元素</span><br><span class="line">zrem key member [member ... member]</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910152127127.png" alt="image-20230910152127127"></div><div class="image-meta"><span class="image-caption center">image-20230910152127127</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230910152237788.png" alt="image-20230910152237788"></div><div class="image-meta"><span class="image-caption center">image-20230910152237788</span></div></div>
+<blockquote>
+<p>所有的排名默认都是升序，如果要降序则在命令的Z后面添加REV即可，例如：</p>
 <ul>
 <li>
 <p><strong>升序</strong>获取sorted set 中的指定元素的排名：ZRANK key member</p>
@@ -312,6 +313,7 @@
 <p><strong>降序</strong>获取sorted set 中的指定元素的排名：ZREVRANK key memeber</p>
 </li>
 </ul>
+</blockquote>
 <h2 id="spring-data-redis"><a class="markdownIt-Anchor" href="#spring-data-redis"></a> Spring Data Redis</h2>
 <p>SpringData是Spring中数据操作的模块，包含对各种数据库的集成，其中对Redis的集成模块就叫做SpringDataRedis，官网地址：<a target="_blank" rel="external nofollow noopener noreferrer" href="https://spring.io/projects/spring-data-redis">https://spring.io/projects/spring-data-redis</a></p>
 <ul>
@@ -348,7 +350,7 @@
 
 </article>
 
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/e2534ec2/">使用腾讯云Cos实现上传下载</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/c4e4d16f/">SpringDataRedis</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/e2534ec2/">使用腾讯云Cos实现上传下载</a></div></section></div>
 
 
 <div class="related-wrap reveal" id="related-posts">
@@ -356,7 +358,7 @@
       <div class="title cap theme">您可能感兴趣的文章</div>
     </section>
     <section class="body">
-    <div class="related-posts"><a class="item" href="\post\3ba05f4e\" title="Knife4j"><span class="title">Knife4j</span><span class="excerpt">技术学习分享</span></a><a class="item" href="\post\586965a7\" title="Xxl-Job"><span class="title">Xxl-Job</span><span class="excerpt">学习记录</span></a><a class="item" href="\post\e2534ec2\" title="使用腾讯云Cos实现上传下载"><span class="title">使用腾讯云Cos实现上传下载</span><span class="excerpt">使用腾讯云cos实现上传下载</span></a><a class="item" href="\post\781a6a1a\" title="公共字段自动填充"><span class="title">公共字段自动填充</span><span class="excerpt">公共字段自动填充</span></a></div></section></div>
+    <div class="related-posts"><a class="item" href="\post\c4e4d16f\" title="SpringDataRedis"><span class="title">SpringDataRedis</span><span class="excerpt">技术学习分享</span></a><a class="item" href="\post\3ba05f4e\" title="Knife4j"><span class="title">Knife4j</span><span class="excerpt">技术学习分享</span></a><a class="item" href="\post\586965a7\" title="Xxl-Job"><span class="title">Xxl-Job</span><span class="excerpt">学习记录</span></a><a class="item" href="\post\e2534ec2\" title="使用腾讯云Cos实现上传下载"><span class="title">使用腾讯云Cos实现上传下载</span><span class="excerpt">使用腾讯云cos实现上传下载</span></a></div></section></div>
 
 
 
