@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://gcore.jsdelivr.net">
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="//unpkg.com">
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>rabbitMq - Ezhixuan</title>
+
+  
+    <meta name="description" content="关于MQ MQ，中文是消息队列，字面上是存放消息的队列，也是时间驱动架构中的Broker。  同步调用与异步调用  同步调用 优点：时效性较强，可以立即得到结果。 缺点：耦合度高，性能和吞吐能力较低，有额外的资源消耗，有级联失败问题。  异步调用 优点：服务解耦，性能提升，吞吐量提高，服务没有强依赖，不必担心级联失败问题，流量削峰。 缺点：依赖broker的可靠性、安全性、吞吐能力，架构更复杂，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rabbitMq">
+<meta property="og:url" content="https://www.ezhixuan.xyz/post/775b8c4e/">
+<meta property="og:site_name" content="Ezhixuan">
+<meta property="og:description" content="关于MQ MQ，中文是消息队列，字面上是存放消息的队列，也是时间驱动架构中的Broker。  同步调用与异步调用  同步调用 优点：时效性较强，可以立即得到结果。 缺点：耦合度高，性能和吞吐能力较低，有额外的资源消耗，有级联失败问题。  异步调用 优点：服务解耦，性能提升，吞吐量提高，服务没有强依赖，不必担心级联失败问题，流量削峰。 缺点：依赖broker的可靠性、安全性、吞吐能力，架构更复杂，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922100029004.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922100949606.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922104637112.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922110851799.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922110858777.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922112127588.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922112136108.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922113603695.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922113827953.png">
+<meta property="og:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20231004111035847.png">
+<meta property="article:published_time" content="2023-10-04T03:06:22.000Z">
+<meta property="article:modified_time" content="2023-10-04T03:06:22.000Z">
+<meta property="article:author" content="Ezhixuan">
+<meta property="article:tag" content="mq">
+<meta property="article:tag" content="rabbitMq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.ezhixuan.xyz/post/775b8c4e/image-20230922100029004.png">
+  
+  
+  
+  <meta name="keywords" content="mq,rabbitMq">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Ezhixuan" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="https://s1.ax1x.com/2023/09/02/pPB0E4O.png">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+    <script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+    <script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  
+
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class="l_body" id="start">
+    <aside class="l_left" layout="post">
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/img/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">Ezhixuan</div><div class="sub normal cap">我们都要努力成为更好的自己</div><div class="sub hover cap" style="opacity:0"> 如果遇到了，就记录下来</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">随笔</a><a class="nav-item" href="/about/">关于</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/post/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"/></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">rabbitMq</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Emq"><span class="toc-text"> 关于MQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8%E4%B8%8E%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="toc-text"> 同步调用与异步调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="toc-text"> 同步调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8"><span class="toc-text"> 异步调用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text"> 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%A1%86%E6%9E%B6"><span class="toc-text"> 实现框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rabbitmq"><span class="toc-text"> RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text"> 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-text"> 导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE"><span class="toc-text"> 添加配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simplequeue"><span class="toc-text"> SimpleQueue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-text"> 发送模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher"><span class="toc-text"> publisher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listener"><span class="toc-text"> listener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#workqueue"><span class="toc-text"> WorkQueue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E6%A8%A1%E5%9E%8B-2"><span class="toc-text"> 发送模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher-2"><span class="toc-text"> publisher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listener-2"><span class="toc-text"> listener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%9E%8B"><span class="toc-text"> 发布订阅模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E6%A8%A1%E5%9E%8B-3"><span class="toc-text"> 发送模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fanout-exchange"><span class="toc-text"> Fanout Exchange</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#config"><span class="toc-text"> config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher-3"><span class="toc-text"> publisher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listener-3"><span class="toc-text"> listener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#direct-exchange"><span class="toc-text"> Direct Exchange</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher-4"><span class="toc-text"> publisher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listener-4"><span class="toc-text"> listener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#topic-exchange"><span class="toc-text"> Topic Exchange</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#publisher-5"><span class="toc-text"> publisher</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#listener-5"><span class="toc-text"> listener</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="toc-text"> 消息转换器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96-2"><span class="toc-text"> 导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-text"> 修改配置</span></a></li></ol></li></ol></div></div></widget>
+
+
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/Ezhixuan/" target="_blank" rel="external nofollow noopener noreferrer"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/08a41b181ce68.svg"></a></div></footer>
+
+    </aside>
+    <div class="l_main">
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div><div id="post-meta">发布于&nbsp;<time datetime="2023-10-04T03:06:22.000Z">2023-10-04</time></div></div>
+
+<article class="md-text content post">
+<h1 class="article-title"><span>rabbitMq</span></h1>
+<h2 id="关于mq"><a class="markdownIt-Anchor" href="#关于mq"></a> 关于MQ</h2>
+<p>MQ，中文是消息队列，字面上是存放消息的队列，也是时间驱动架构中的Broker。</p>
+<h3 id="同步调用与异步调用"><a class="markdownIt-Anchor" href="#同步调用与异步调用"></a> 同步调用与异步调用</h3>
+<h4 id="同步调用"><a class="markdownIt-Anchor" href="#同步调用"></a> 同步调用</h4>
+<p>优点：时效性较强，可以立即得到结果。</p>
+<p>缺点：耦合度高，性能和吞吐能力较低，有额外的资源消耗，有级联失败问题。</p>
+<h4 id="异步调用"><a class="markdownIt-Anchor" href="#异步调用"></a> 异步调用</h4>
+<p>优点：服务解耦，性能提升，吞吐量提高，服务没有强依赖，不必担心级联失败问题，流量削峰。</p>
+<p>缺点：依赖broker的可靠性、安全性、吞吐能力，架构更复杂，业务没有明显的流程线，不好追踪管理。</p>
+<h3 id="使用场景"><a class="markdownIt-Anchor" href="#使用场景"></a> 使用场景</h3>
+<p>同步的使用场景在于立即需要获取返回结果并使用，是比较常用的。</p>
+<p>异步的使用场景在于不关心返回结果，只需要通知即可。</p>
+<h3 id="实现框架"><a class="markdownIt-Anchor" href="#实现框架"></a> 实现框架</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>RabbitMQ</th>
+<th>ActiveMQ</th>
+<th>RocketMQ</th>
+<th>Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发语言</td>
+<td>Erlang</td>
+<td>Java</td>
+<td>Java</td>
+<td>Scala&amp;Java</td>
+</tr>
+<tr>
+<td>支持协议</td>
+<td>AMQP，XMPP，SMTP，STOMP</td>
+<td>OpenWire，STOMP，REST，XMPP，AMQP</td>
+<td>自定义协议</td>
+<td>自定义协议</td>
+</tr>
+<tr>
+<td>可用性</td>
+<td>高</td>
+<td>一般</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>单机吞吐量</td>
+<td>一般</td>
+<td>差</td>
+<td>高</td>
+<td>非常高</td>
+</tr>
+<tr>
+<td>消息延迟</td>
+<td>微妙级</td>
+<td>毫秒级</td>
+<td>毫秒级</td>
+<td>毫秒以内</td>
+</tr>
+<tr>
+<td>消息可靠性</td>
+<td>高</td>
+<td>一般</td>
+<td>高</td>
+<td>一般</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rabbitmq"><a class="markdownIt-Anchor" href="#rabbitmq"></a> RabbitMQ</h2>
+<h3 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h3>
+<p>可以直接通过指令拉取</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker pull rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<p>也可以通过下载安装包后安装</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker load -i 包名</span><br></pre></td></tr></table></figure>
+<p>docker启动</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -e RABBITMQ_DEFAULT_USER=ezhixuan \</span><br><span class="line"> -e RABBITMQ_DEFAULT_PASS=123456 \</span><br><span class="line"> --name mq \</span><br><span class="line"> --hostname mq1 \</span><br><span class="line"> -p 15672:15672 \</span><br><span class="line"> -p 5672:5672 \</span><br><span class="line"> -d \</span><br><span class="line"> rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<h3 id="导入依赖"><a class="markdownIt-Anchor" href="#导入依赖"></a> 导入依赖</h3>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="添加配置"><a class="markdownIt-Anchor" href="#添加配置"></a> 添加配置</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  rabbitmq:</span><br><span class="line">    username:  # 用户名</span><br><span class="line">    password:  # 密码</span><br><span class="line">    host:  # 主机</span><br><span class="line">    port:  # 端口</span><br><span class="line">    virtual-host:  # 虚拟主机</span><br></pre></td></tr></table></figure>
+<h2 id="simplequeue"><a class="markdownIt-Anchor" href="#simplequeue"></a> SimpleQueue</h2>
+<h3 id="发送模型"><a class="markdownIt-Anchor" href="#发送模型"></a> 发送模型</h3>
+<p>publisher -&gt; queue -&gt; consumer</p>
+<h3 id="publisher"><a class="markdownIt-Anchor" href="#publisher"></a> publisher</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span> <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">rabbitPublisher</span><span class="params">()</span> &#123;</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;mqdemo&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;我是测试-普通信息发送&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="listener"><a class="markdownIt-Anchor" href="#listener"></a> listener</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RabbitMqListener</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener(queues = &quot;mqdemo&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">simpleListener</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;接收到一条消息&#123;&#125;&quot;</span>, onMessage);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="workqueue"><a class="markdownIt-Anchor" href="#workqueue"></a> WorkQueue</h2>
+<h3 id="发送模型-2"><a class="markdownIt-Anchor" href="#发送模型-2"></a> 发送模型</h3>
+<p>publisher -&gt; queue -&gt; consumer</p>
+<p>​		-&gt;consumer</p>
+<p>WorkQueue并不是一个新的队列，只是通过添加消费者来提高消息处理速度，来避免消息堆积。</p>
+<p>它会将消息平均的分配给所有消费者，是因为rabbitMq的消息预取机制，消息到达队列时，消费者的通道会预先将消息抽取出，直到达到消费者允许的最大未确认消息数量。一旦未确认的消息数量达到了设置的预取值，RabbitMQ就停止传递更多消息，除非至少有一条未完成的消息得到了确认。</p>
+<p>如果由两台性能一高一低的机器作为消费者，它们仍会通过消费预取来平分这些消息，尽管高性能的机器已经将消息处理完，也不会去拿低性能的机器的消息。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922100029004.png" alt="image-20230922100029004"></div><div class="image-meta"><span class="image-caption center">image-20230922100029004</span></div></div>
+<p>可以消费者1很快就处理结束了，而消费者二等待了一段时间后才结束，但是它们处理的消息数量是相同的。</p>
+<p>希望能够按能力分配我们可以到yml文件中配置消费预取限制</p>
+<p>将prefetch改为1,即最大只能有一条未处理消息，只有处理完才能获取下一条消息，prefetch 默认是无上限。</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922100949606.png" alt="image-20230922100949606"></div><div class="image-meta"><span class="image-caption center">image-20230922100949606</span></div></div>
+<p>这样就极大优化了消息处理的效率</p>
+<h3 id="publisher-2"><a class="markdownIt-Anchor" href="#publisher-2"></a> publisher</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">workQueue</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// 发送50条消息</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">&quot;mqdemo&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;我是测试-工作队列信息发送&quot;</span> + i));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="listener-2"><a class="markdownIt-Anchor" href="#listener-2"></a> listener</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(queues = &quot;mqdemo&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">workQueue1</span><span class="params">(String onMessage)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">  log.info(<span class="string">&quot;workQueue1接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  Thread.sleep(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RabbitListener(queues = &quot;mqdemo&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">workQueue2</span><span class="params">(String onMessage)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">  log.error(<span class="string">&quot;workQueue2接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发布订阅模型"><a class="markdownIt-Anchor" href="#发布订阅模型"></a> 发布订阅模型</h2>
+<h3 id="发送模型-3"><a class="markdownIt-Anchor" href="#发送模型-3"></a> 发送模型</h3>
+<p>发出的消息只能被一个消费者消费，因为一旦被消费就会从队列中被删除。</p>
+<p>发布订阅模型允许将同一消息发送给多个消费者，通过exchange实现。</p>
+<p>exchange只负责消息路由而不负责存储，路由失败则消息丢失</p>
+<h2 id="fanout-exchange"><a class="markdownIt-Anchor" href="#fanout-exchange"></a> Fanout Exchange</h2>
+<p>会将接收到的消息路由到每一个跟其绑定的queue</p>
+<h3 id="config"><a class="markdownIt-Anchor" href="#config"></a> config</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ezhixuan.rabbitmqdemo.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.Binding;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.BindingBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.FanoutExchange;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.core.Queue;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@program</span>: rabbitMq-demo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 将队列与交换机绑定-rabbitMq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: Mr.Xuan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2023-09-22 10:29</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BindingQueue2Exchange</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// =================init Exchange=================</span></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="keyword">public</span> FanoutExchange <span class="title function_">ezhixuanFanoutExchange</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FanoutExchange</span>(<span class="string">&quot;ezhixuan.fanout&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ==================init Queue=================</span></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="keyword">public</span> Queue <span class="title function_">fanoutQueue1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;fanout.queue1&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="keyword">public</span> Queue <span class="title function_">fanoutQueue2</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Queue</span>(<span class="string">&quot;fanout.queue2&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ==================Binding=================</span></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="keyword">public</span> Binding <span class="title function_">bindingQueue1</span><span class="params">(Queue fanoutQueue1, FanoutExchange ezhixuanFanoutExchange)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> BindingBuilder.bind(fanoutQueue1).to(ezhixuanFanoutExchange);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Binding <span class="title function_">bindingQueue2</span><span class="params">(Queue fanoutQueue2, FanoutExchange ezhixuanFanoutExchange)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> BindingBuilder.bind(fanoutQueue2).to(ezhixuanFanoutExchange);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="publisher-3"><a class="markdownIt-Anchor" href="#publisher-3"></a> publisher</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">fanout</span><span class="params">()</span> &#123;</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.fanout&quot;</span>, <span class="string">&quot;&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;哈喽大家好，都看的到吗&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="listener-3"><a class="markdownIt-Anchor" href="#listener-3"></a> listener</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(queues = &quot;fanout.queue1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fanoutQueue1</span><span class="params">(String onMessage)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">  log.info(<span class="string">&quot;fanoutQueue1接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RabbitListener(queues = &quot;fanout.queue2&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">fanoutQueue2</span><span class="params">(String onMessage)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">  log.error(<span class="string">&quot;fanoutQueue2接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922104637112.png" alt="image-20230922104637112"></div><div class="image-meta"><span class="image-caption center">image-20230922104637112</span></div></div>
+<h2 id="direct-exchange"><a class="markdownIt-Anchor" href="#direct-exchange"></a> Direct Exchange</h2>
+<p>Direct Exchange会将接收到的消息根据指定规则路由到指定的Queue，因此被称为路由模式</p>
+<p>一个Queue的bindingkey是可以有多个的</p>
+<h3 id="publisher-4"><a class="markdownIt-Anchor" href="#publisher-4"></a> publisher</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">direct</span><span class="params">()</span>&#123;</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.direct&quot;</span>, <span class="string">&quot;yellow&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;yellow看到吗&quot;</span>));</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.direct&quot;</span>, <span class="string">&quot;blue&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;blue看到吗&quot;</span>));</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.direct&quot;</span>, <span class="string">&quot;red&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;red看到吗&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="listener-4"><a class="markdownIt-Anchor" href="#listener-4"></a> listener</h3>
+<p>在fanout中使用的是通过config配置类来实现Queue的初始化以及绑定，但是这样是比较繁琐的，我们可以直接在listener注解上配置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">      bindings =</span></span><br><span class="line"><span class="meta">          @QueueBinding(</span></span><br><span class="line"><span class="meta">              value = @Queue(name = &quot;direct.queue1&quot;),</span></span><br><span class="line"><span class="meta">              exchange = @Exchange(name = &quot;ezhixuan.direct&quot;, type = ExchangeTypes.DIRECT),</span></span><br><span class="line"><span class="meta">              key = &#123;&quot;red&quot;, &quot;blue&quot;&#125;))</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">directQueue1</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;directQueue1接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">      bindings =</span></span><br><span class="line"><span class="meta">          @QueueBinding(</span></span><br><span class="line"><span class="meta">              value = @Queue(name = &quot;direct.queue2&quot;),</span></span><br><span class="line"><span class="meta">              exchange = @Exchange(name = &quot;ezhixuan.direct&quot;, type = ExchangeTypes.DIRECT),</span></span><br><span class="line"><span class="meta">              key = &#123;&quot;red&quot;, &quot;yellow&quot;&#125;))</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">directQueue2</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;directQueue2接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922110851799.png" alt="image-20230922110851799"></div><div class="image-meta"><span class="image-caption center">image-20230922110851799</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922110858777.png" alt="image-20230922110858777"></div><div class="image-meta"><span class="image-caption center">image-20230922110858777</span></div></div>
+<h2 id="topic-exchange"><a class="markdownIt-Anchor" href="#topic-exchange"></a> Topic Exchange</h2>
+<p>bindingkey必须是多个单词组成，单词之间由<code>.</code>连接</p>
+<p>主要特点在于支持使用通配符</p>
+<p>#：代表0个或者多个单词</p>
+<p>*：代指一个单词</p>
+<h3 id="publisher-5"><a class="markdownIt-Anchor" href="#publisher-5"></a> publisher</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">topic</span><span class="params">()</span> &#123;</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.topic&quot;</span>, <span class="string">&quot;ezhixuan.wiki&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;wiki上新了&quot;</span>));</span><br><span class="line">  rabbitTemplate.convertAndSend(<span class="string">&quot;ezhixuan.topic&quot;</span>, <span class="string">&quot;ezhixuan.note&quot;</span>, JSONUtil.toJsonStr(<span class="string">&quot;note上新了&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="listener-5"><a class="markdownIt-Anchor" href="#listener-5"></a> listener</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">      bindings =</span></span><br><span class="line"><span class="meta">          @QueueBinding(</span></span><br><span class="line"><span class="meta">              value = @Queue(name = &quot;topic.queue1&quot;),</span></span><br><span class="line"><span class="meta">              exchange = @Exchange(name = &quot;ezhixuan.topic&quot;, type = ExchangeTypes.TOPIC),</span></span><br><span class="line"><span class="meta">              key = &quot;ezhixuan.#&quot;))</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">topicQueue1</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;topicQueue1接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">      bindings =</span></span><br><span class="line"><span class="meta">          @QueueBinding(</span></span><br><span class="line"><span class="meta">              value = @Queue(name = &quot;topic.queue2&quot;),</span></span><br><span class="line"><span class="meta">              exchange = @Exchange(name = &quot;ezhixuan.topic&quot;, type = ExchangeTypes.TOPIC),</span></span><br><span class="line"><span class="meta">              key = &quot;ezhixuan.wiki&quot;))</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">topicQueue2</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;topicQueue2接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener(</span></span><br><span class="line"><span class="meta">      bindings =</span></span><br><span class="line"><span class="meta">          @QueueBinding(</span></span><br><span class="line"><span class="meta">              value = @Queue(name = &quot;topic.queue3&quot;),</span></span><br><span class="line"><span class="meta">              exchange = @Exchange(name = &quot;ezhixuan.topic&quot;, type = ExchangeTypes.TOPIC),</span></span><br><span class="line"><span class="meta">              key = &quot;*.wiki&quot;))</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">topicQueue3</span><span class="params">(String onMessage)</span> &#123;</span><br><span class="line">    log.info(<span class="string">&quot;topicQueue3接收到一条消息&#123;&#125;，&#123;&#125;&quot;</span>, onMessage, LocalDateTime.now());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922112127588.png" alt="image-20230922112127588"></div><div class="image-meta"><span class="image-caption center">image-20230922112127588</span></div></div>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922112136108.png" alt="image-20230922112136108"></div><div class="image-meta"><span class="image-caption center">image-20230922112136108</span></div></div>
+<h2 id="消息转换器"><a class="markdownIt-Anchor" href="#消息转换器"></a> 消息转换器</h2>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922113603695.png" alt="image-20230922113603695"></div><div class="image-meta"><span class="image-caption center">image-20230922113603695</span></div></div>
+<p>由于springamqp默认使用的是jdk的序列化器，在消息的转换上会占用更多字节，影响速度，推荐修改为json的序列化器。</p>
+<p>我个人习惯使用hutool的对象转换即上文发送消息的JSONUtil转换也是可以实现的</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20230922113827953.png" alt="image-20230922113827953"></div><div class="image-meta"><span class="image-caption center">image-20230922113827953</span></div></div>
+<p>也可以通过以下方法来实现</p>
+<h3 id="导入依赖-2"><a class="markdownIt-Anchor" href="#导入依赖-2"></a> 导入依赖</h3>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--发送消息转换器所需依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--接收消息转换器所需依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改配置"><a class="markdownIt-Anchor" href="#修改配置"></a> 修改配置</h3>
+<p>可以在启动类直接配置，也可以在config创建配置。</p>
+<p>注意这里需要导的是org.springframework.amqp.support.converter.MessageConverter的MessageConverter</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ezhixuan.rabbitmqdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.amqp.support.converter.MessageConverter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RabbitMqDemoApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(RabbitMqDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MessageConverter <span class="title function_">messageConverter</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonMessageConverter</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="image-20231004111035847.png" alt="image-20231004111035847"></div><div class="image-meta"><span class="image-caption center">image-20231004111035847</span></div></div>
+
+
+  
+  <script>
+    let tianliGPT_postSelector = '.md-text.content.post';
+    let tianliGPT_key = '0b206f6e6a324c694de1';
+  </script>
+  <script defer src="https://cdn1.tianli0.top/gh/zhheo/Post-Abstract-AI@0.9/tianli_gpt.js"></script>
+
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>欢迎积极交流讨论，如有疑问请联系我</p>
+</div></section><section id="share"><div class="header"><span>分享文章</span></div><div class="body"><div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://www.ezhixuan.xyz/post/775b8c4e/"></div><div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/b32ef3da1162a.svg"></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://www.ezhixuan.xyz/post/775b8c4e/&title=rabbitMq - Ezhixuan&pics=/img/rabbitmq.jpg&summary= 关于MQ
+MQ，中文是消息队列，字面上是存放消息的队列，也是时间驱动架构中的Broker。
+ 同步调用与异步调用
+ 同步调用
+优点：时效性较强，可以立即得到结果。
+缺点：耦合度高，性能和吞吐能力较低，有额外的资源消耗，有级联失败问题..."><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/80c07e4dbb303.svg"></a><a class="social share-item email" href="mailto:?subject=rabbitMq - Ezhixuan&amp;body=https://www.ezhixuan.xyz/post/775b8c4e/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/a1b00e20f425d.svg"></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/8411ed322ced6.svg"></a></div><div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://www.ezhixuan.xyz/post/775b8c4e/"></div></div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/df2d6cfb/">优雅的非空判断</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/b04a945b/">springSecurity</a></div></section></div>
+
+
+<div class="related-wrap reveal" id="related-posts">
+    <section class="header">
+      <div class="title cap theme">您可能感兴趣的文章</div>
+    </section>
+    <section class="body">
+    <div class="related-posts"><a class="item" href="\post\7830183e\" title="Springboot解决跨域问题"><span class="title">Springboot解决跨域问题</span><span class="excerpt">跨域问题</span></a></div></section></div>
+
+
+
+  <div class="related-wrap md-text reveal" id="comments">
+    <section class="header cmt-title cap theme">
+      快来参与讨论吧
+    </section>
+    <section class="body cmt-body waline">
+      
+
+<div id="waline_container" class="waline_thread"><svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"/></svg></div>
+
+    </section>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories/">分类</a><a href="/tags/">标签</a><a href="/archives/">归档</a></div><div class="sitemap-group"><span class="fs14">项目</span><a href="/">开源库</a></div><div class="sitemap-group"><span class="fs14">社交</span><a href="/">友链</a><a href="/">留言板</a></div><div class="sitemap-group"><span class="fs14">更多</span><a href="/">关于本站</a><a href="/">GitHub</a></div></div><div class="text"><p>本站由 <a href="/">@Ezhixuan</a> 使用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>
+本博客素材均来源于网络，如有侵权请联系 <a href="mailto:1248909111@qq.com" rel="external nofollow noopener noreferrer" target="_blank">1248909111@qq.com</a> 删除<br>
+本博客所有文章除特别声明外，均采用 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>，<span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>，<span id="busuanzi_container_site_uv">访客数: <span id="busuanzi_value_site_uv"></span>人</span></div></div></footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function createtime() {
+    var now = new Date();
+    var grt= new Date("09/01/2023 00:00:00");
+    now.setTime(now.getTime()+250);
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+    document.getElementById("timeDate").innerHTML = "本站已运行 "+dnum+" 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+  };
+  setInterval("createtime()",250);
+</script>
+
+      <div class="float-panel mobile-only blur" style="display:none">
+  <button type="button" class="sidebar-toggle mobile" onclick="sidebar.toggle()">
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"/><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"/></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class="scripts">
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function load_comment(){
+    if(!document.getElementById("waline_container"))return;
+    stellar.loadCSS('https://unpkg.com/@waline/client@v2/dist/waline.css');
+    stellar.loadScript('https://unpkg.com/@waline/client@v2/dist/waline.js', {defer:true}).then(function () {
+      const el = document.getElementById("waline_container");
+      var path = el.getAttribute('comment_id');
+      if (!path) {
+        path = decodeURI(window.location.pathname);
+      }
+      Waline.init(Object.assign({"js":"https://unpkg.com/@waline/client@v2/dist/waline.js","css":"https://unpkg.com/@waline/client@v2/dist/waline.css","serverURL":"https://comment.ezhixuan.xyz/","commentCount":true,"pageview":false,"locale":{"placeholder":null},"emoji":["https://gcore.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs"]}, {
+        el: '#waline_container',
+        path: path,
+        
+      }));
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    load_comment();
+  });
+
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
