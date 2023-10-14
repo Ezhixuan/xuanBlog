@@ -20,18 +20,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>Leetcode：二分查找 - Ezhixuan</title>
+  <title>Leetcode：只出现一次的数字 - Ezhixuan</title>
 
   
-    <meta name="description" content="关于二分查找 二分查找法（Binary Search）是一种在有序数组中查找目标元素的高效算法。它的基本思想是通过比较目标值和数组中间元素的大小关系，将搜索范围缩小一半，直到找到目标值或确定目标值不存在。 以下是二分查找法的基本步骤：   确定搜索范围：在开始查找之前，确定要在哪个有序数组中进行查找。通常，这个数组会首先进行排序。   初始化指针：设置两个指针，一个指向搜索范围的起始位置（通常为">
+    <meta name="description" content="只出现一次的数字 data:2023&#x2F;10&#x2F;14 136. 只出现一次的数字 简单 给你一个 非空 整数数组 nums ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 你必须设计并实现线性时间复杂度的算法来解决此问题，且该算法只使用常量额外空间。 示例 1 ： 输入：nums &#x3D; [2,2,1]输出：1 示例 2 ： 输入：nums &#x3D; [4,1,2,1,2]">
 <meta property="og:type" content="website">
-<meta property="og:title" content="二分查找">
-<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/leetcode/%E6%95%B0%E7%BB%84/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html">
+<meta property="og:title" content="只出现一次的数字">
+<meta property="og:url" content="https://www.ezhixuan.xyz/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-14%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.html">
 <meta property="og:site_name" content="Ezhixuan">
-<meta property="og:description" content="关于二分查找 二分查找法（Binary Search）是一种在有序数组中查找目标元素的高效算法。它的基本思想是通过比较目标值和数组中间元素的大小关系，将搜索范围缩小一半，直到找到目标值或确定目标值不存在。 以下是二分查找法的基本步骤：   确定搜索范围：在开始查找之前，确定要在哪个有序数组中进行查找。通常，这个数组会首先进行排序。   初始化指针：设置两个指针，一个指向搜索范围的起始位置（通常为">
+<meta property="og:description" content="只出现一次的数字 data:2023&#x2F;10&#x2F;14 136. 只出现一次的数字 简单 给你一个 非空 整数数组 nums ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 你必须设计并实现线性时间复杂度的算法来解决此问题，且该算法只使用常量额外空间。 示例 1 ： 输入：nums &#x3D; [2,2,1]输出：1 示例 2 ： 输入：nums &#x3D; [4,1,2,1,2]">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-05T05:40:07.385Z">
-<meta property="article:modified_time" content="2023-09-05T05:40:07.385Z">
+<meta property="article:published_time" content="2023-10-14T13:20:43.460Z">
+<meta property="article:modified_time" content="2023-10-14T13:20:43.460Z">
 <meta property="article:author" content="Ezhixuan">
 <meta property="article:tag" content="ezhixuan,博客">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
 
 
 
-<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html"><span class="toc-text">关于数组</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html"><span class="toc-text">二分查找</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text"> 关于二分查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text"> 二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98"><span class="toc-text"> 解题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95"><span class="toc-text"> 个人看法</span></a></li></ol></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html"><span class="toc-text">有序数组的平方</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html"><span class="toc-text">长度最小的子数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html"><span class="toc-text">螺旋矩阵II</span></a></div></div><div class="widget-header cap dis-select"><span class="name">链表</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/N%E7%9A%87%E5%90%8E.html"><span class="toc-text">N皇后</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%85%B3%E4%BA%8E%E9%93%BE%E8%A1%A8.html"><span class="toc-text">关于链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除链表元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.html"><span class="toc-text">设计链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.html"><span class="toc-text">反转链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9%20.html"><span class="toc-text">两两交换链表中的节点</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9.html"><span class="toc-text">删除链表的倒数第 N 个结点</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html"><span class="toc-text">链表相交</span></a></div></div><div class="widget-header cap dis-select"><span class="name">每日一题</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-13%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.html"><span class="toc-text">避免洪水泛滥</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-14%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.html"><span class="toc-text">只出现一次的数字</span></a></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">数组</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html"><span class="toc-text">关于数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html"><span class="toc-text">二分查找</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html"><span class="toc-text">有序数组的平方</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.html"><span class="toc-text">长度最小的子数组</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II.html"><span class="toc-text">螺旋矩阵II</span></a></div></div><div class="widget-header cap dis-select"><span class="name">链表</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%95%B0%E7%BB%84/N%E7%9A%87%E5%90%8E.html"><span class="toc-text">N皇后</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%85%B3%E4%BA%8E%E9%93%BE%E8%A1%A8.html"><span class="toc-text">关于链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.html"><span class="toc-text">移除链表元素</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8.html"><span class="toc-text">设计链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.html"><span class="toc-text">反转链表</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9%20.html"><span class="toc-text">两两交换链表中的节点</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9.html"><span class="toc-text">删除链表的倒数第 N 个结点</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4.html"><span class="toc-text">链表相交</span></a></div></div><div class="widget-header cap dis-select"><span class="name">每日一题</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-13%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.html"><span class="toc-text">避免洪水泛滥</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-14%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.html"><span class="toc-text">只出现一次的数字</span></a><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97"><span class="toc-text"> 只出现一次的数字</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text"> 解题思路</span></a></li></div></div></widget>
 
 
 
@@ -104,57 +104,36 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/leetcode/">Leetcode</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-09-05T05:40:07.385Z">2023-09-05</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/leetcode/">Leetcode</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-10-14T13:20:43.460Z">2023-10-14</time></div></div>
 
   <article class="md-text content wiki">
-  <h1 class="article-title"><span>二分查找</span></h1>
-  <h2 id="关于二分查找"><a class="markdownIt-Anchor" href="#关于二分查找"></a> 关于二分查找</h2>
-<p>二分查找法（Binary Search）是一种在有序数组中查找目标元素的高效算法。它的基本思想是通过比较目标值和数组中间元素的大小关系，将搜索范围缩小一半，直到找到目标值或确定目标值不存在。</p>
-<p>以下是二分查找法的基本步骤：</p>
-<ol>
-<li>
-<p>确定搜索范围：在开始查找之前，确定要在哪个有序数组中进行查找。通常，这个数组会首先进行排序。</p>
-</li>
-<li>
-<p>初始化指针：设置两个指针，一个指向搜索范围的起始位置（通常为数组的第一个元素），另一个指向搜索范围的结束位置（通常为数组的最后一个元素）。</p>
-</li>
-<li>
-<p>迭代查找：在每一次迭代中，计算中间元素的索引，即指针的中间位置。然后，将目标值与中间元素进行比较。</p>
-<ul>
-<li>如果目标值等于中间元素，则找到目标值，返回其索引。</li>
-<li>如果目标值小于中间元素，则目标值可能在中间元素的左侧，将结束指针移动到中间元素的前一个位置。</li>
-<li>如果目标值大于中间元素，则目标值可能在中间元素的右侧，将起始指针移动到中间元素的后一个位置。</li>
-</ul>
-</li>
-<li>
-<p>更新搜索范围：根据比较的结果，更新搜索范围，将搜索范围缩小一半。</p>
-</li>
-<li>
-<p>重复迭代：重复执行步骤 3 和步骤 4，直到找到目标值或确定目标值不存在。如果起始指针大于结束指针，则表示目标值不存在于数组中。</p>
-</li>
-</ol>
-<p>二分查找法的时间复杂度为 O(log n)，其中 n 是数组的大小。由于每次迭代都将搜索范围缩小一半，因此它的查找效率非常高。</p>
-<p>需要注意的是，二分查找法要求数组是有序的。如果数组无序，需要先对其进行排序，然后再进行二分查找。</p>
-<h2 id="二分查找"><a class="markdownIt-Anchor" href="#二分查找"></a> 二分查找</h2>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://leetcode.cn/problems/binary-search/">704. 二分查找</a></p>
-<p>给定一个 <code>n</code> 个元素有序的（升序）整型数组 <code>nums</code> 和一个目标值 <code>target</code> ，写一个函数搜索 <code>nums</code> 中的 <code>target</code>，如果目标值存在返回下标，否则返回 <code>-1</code>。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 9</span><br><span class="line">输出: 4</span><br><span class="line">解释: 9 出现在 nums 中并且下标为 4</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [-1,0,3,5,9,12], target = 2</span><br><span class="line">输出: -1</span><br><span class="line">解释: 2 不存在 nums 中因此返回 -1</span><br></pre></td></tr></table></figure>
+  <h1 class="article-title"><span>只出现一次的数字</span></h1>
+  <h3 id="只出现一次的数字"><a class="markdownIt-Anchor" href="#只出现一次的数字"></a> 只出现一次的数字</h3>
+<p>data:2023/10/14<br>
+<a target="_blank" rel="external nofollow noopener noreferrer" href="https://leetcode.cn/problems/single-number/">136. 只出现一次的数字</a><br>
+<code>简单</code></p>
+<p>给你一个 <strong>非空</strong> 整数数组 <code>nums</code> ，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<p>你必须设计并实现线性时间复杂度的算法来解决此问题，且该算法只使用常量额外空间。</p>
+<p><strong>示例 1 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [4,1,2,1,2]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3 ：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
-<ol>
-<li>你可以假设 <code>nums</code> 中的所有元素是不重复的。</li>
-<li><code>n</code> 将在 <code>[1, 10000]</code>之间。</li>
-<li><code>nums</code> 的每个元素都将在 <code>[-9999, 9999]</code>之间。</li>
-</ol>
-<h3 id="解题"><a class="markdownIt-Anchor" href="#解题"></a> 解题</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">search</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="comment">// 递增的整型数组nums中查找目标值target，找到返回下标，没找到返回-1</span></span><br><span class="line">        <span class="comment">// 1. 初始化变量 左右指针</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 2. 确定循环条件 [left, right],此处right可取，所以选择&lt;=</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">            <span class="comment">// 3. 确定中值</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>; <span class="comment">// 防止下标越界</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">                <span class="comment">// 中值小于目标值 更新左指针</span></span><br><span class="line">                left = mid + <span class="number">1</span>; <span class="comment">// mid处已判断，无需重复处理</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 中值大于目标值 更新右指针</span></span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3.1 没找到返回-1</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="个人看法"><a class="markdownIt-Anchor" href="#个人看法"></a> 个人看法</h3>
-<p>做的比较多已经算是非常熟练了，主要在于确定循环条件以及更新左右指针的处理</p>
-<p>当区间为[left, right]左闭右闭时，因为左右区间都为有效区间，所以循环时选择 &lt;=</p>
-<p>当区间为[left, right)左闭右开或(left, right](不常见)时，因为存在无效区间，所以循环时不选择添加 =</p>
-<p>对于左右指针更新的处理，也是去判断mid值是否已经判断过，就不多赘述了</p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
+<li><code>-3 * 104 &lt;= nums[i] &lt;= 3 * 104</code></li>
+<li>除了某个元素只出现一次以外，其余每个元素均出现两次。</li>
+</ul>
+<h2 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h2>
+<p>最容易想到的是使用hashMap依次添加并在添加前判断是否存在，如果不为空则数量加一，最后遍历获取数量为1的返回。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; numsMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(Integer i : nums)&#123;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">count</span> <span class="operator">=</span> numsMap.get(i);</span><br><span class="line">            count = count == <span class="literal">null</span> ? <span class="number">1</span> : ++count;</span><br><span class="line">            numsMap.put(i,count);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(Integer i : numsMap.keySet())&#123;</span><br><span class="line">            <span class="type">Integer</span> <span class="variable">count</span> <span class="operator">=</span> numsMap.get(i);</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Integer.MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解答成功:</span><br><span class="line">	执行耗时:14 ms,击败了6.12% 的Java用户</span><br><span class="line">	内存消耗:42.6 MB,击败了90.63% 的Java用户</span><br></pre></td></tr></table></figure>
+<p>而更简单的实现方式可以通过异或来解决</p>
+<p>关于异或N ^ 0 = N N ^ N = 0，我们可以取出一个依次异或，由于存在 A ^ B ^ A = A ^ A ^ B = B，所以两两存在的数字一定会被剔除，最终得到的结果就是所求答案。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (nums.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">                ans = ans ^ nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解答成功:</span><br><span class="line">	执行耗时:0 ms,击败了100.00% 的Java用户</span><br><span class="line">	内存消耗:43.5 MB,击败了29.56% 的Java用户</span><br></pre></td></tr></table></figure>
 
   
   
@@ -162,7 +141,7 @@
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84.html">关于数组</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/leetcode/%E6%95%B0%E7%BB%84/%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9.html">有序数组的平方</a></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/leetcode/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/23-10-13%E9%81%BF%E5%85%8D%E6%B4%AA%E6%B0%B4%E6%B3%9B%E6%BB%A5.html">避免洪水泛滥</a></div><div class="item" id="next"></div></section></div>
 
   
 
